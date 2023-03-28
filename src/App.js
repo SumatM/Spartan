@@ -1,12 +1,14 @@
 import './App.css';
+import NavBar from './Components/NavBar';
 import img from './Logo/logo-no-background.svg'
+import AllRoutes from './Components/Routes/AllRoutes';
+
 
 function App() {
   return (
     <div className="App">
-    
-        <img src={img} style={{width:"15%",margin:'25px'}} alt="logo" />
-        
+      <NavBar/>
+      <AllRoutes/>
     </div>
   );
 }

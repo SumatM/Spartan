@@ -1,0 +1,47 @@
+#textOverVideo{
+    font-family: Futura,Arial;
+      background-color: none;
+      position: absolute;
+      color: white;
+      /* top: 25%; */
+      bottom: 35%;
+      letter-spacing: .3rem;
+      text-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -5px 15px;
+}
+
+#textOverVideoBox2{
+    margin-top: 10px;
+    color: yellow;
+}
+
+#textOverButtons{
+    font-family: Futura,Arial;
+    position: absolute;
+    bottom: 25%;
+
+}
+#textOverButtons>Button {
+    font-family: Futura,Arial;
+    margin: 0 15px 0 15px;
+    border-radius: 0;
+    padding: 10px 25px;
+    font-size: 12px;
+    font-weight: 0;
+}
+#container{
+    position: relative;
+}
+
+
+#textOverButton{
+    font-family: Futura,Arial;
+    background-color: #CEB45C;
+    color: white;
+    letter-spacing: 2px;
+    border-radius: 0;
+    padding: 10px 35px;
+    font-size: 12px;
+    position: absolute;
+    bottom: 65%;
+    left: 0;
+}
