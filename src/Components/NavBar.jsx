@@ -2,12 +2,12 @@ import { Box, Flex, Link, Menu, MenuButton, MenuList, MenuItem,Center,Text, HSta
 import logo from './../Logo/logo-no-background.svg'
 import {SearchIcon} from '@chakra-ui/icons'
 
-import styles from './Module/NavBar.module.css'
+import styles from './Styles/NavBar.module.css'
 
 
 const NavBar = () => {
   return (
-    <Box  h='90px' paddingTop='20px' marginBottom='40px' >
+    <Box  h='90px' paddingTop='20px' marginBottom='0px' >
     <HStack spacing="0"  m='0'>
     
     {/*---- box1 for location and login ----*/}

@@ -24,10 +24,17 @@
     font-family: Futura,Arial;
     margin: 0 15px 0 15px;
     border-radius: 0;
-    padding: 10px 25px;
+    padding: 10px 35px;
     font-size: 12px;
     font-weight: 0;
+    width: 41%;
 }
+
+#textOverButtons>Button:hover{
+    background-color: black;
+    color: white;
+}
+
 #container{
     position: relative;
 }
@@ -42,6 +49,21 @@
     padding: 10px 35px;
     font-size: 12px;
     position: absolute;
-    bottom: 65%;
+    bottom: 80%;
     left: 0;
+}
+
+@media  screen and (max-width:480px) {
+    #textOverButton{
+        display: none;
+    }
+
+    #textOverButtons>Button{
+        display: none;
+    }
+
+    #textOverVideo{
+        font-size: 15px;
+        bottom: 10%;
+    }
 }
