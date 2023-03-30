@@ -5,7 +5,7 @@ import styles from './../../Styles/Video.module.css'
 
 function Video(){
     return(
-        <Box marginTop='65px' id={styles.container}>
+        <Box  id={styles.container}>
         <video autoPlay loop muted width='100%'>
             <source src={video} type="video/mp4" />
         </video>

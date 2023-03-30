@@ -2,6 +2,7 @@ import { Heading,Box, Button, Center,Flex,Text, VStack } from "@chakra-ui/react"
 import Video from "./Video"
 import styles from './../../Styles/Home.module.css'
 import CarouselSlider from "./CarouselSlider"
+import Footer from "../../Footer"
 
 export default function Home(){
 
@@ -9,7 +10,7 @@ export default function Home(){
  
 
     return(
-        <Box >
+        <Box marginTop='65px' >
  {/* ------------video Components------------ */}
         <Box>
         <Video/>
@@ -89,7 +90,7 @@ export default function Home(){
       </Box>
       <Flex justify='space-between' width="100%">
       <Flex>
-        <Box class={styles.rating}>
+        <Box className={styles.rating}>
           <Text>⭐⭐⭐⭐⭐</Text>
           <Heading size="sm">"Excellent customer care"</Heading>
           <Text>Good products, excellent service. Twice I had problems with delivery, both times their Customer Serv...</Text>
@@ -97,7 +98,7 @@ export default function Home(){
         </Box>
       </Flex>
       <Flex>
-        <Box class={styles.rating}>
+        <Box className={styles.rating}>
           <Text>⭐⭐⭐⭐⭐</Text>
           <Heading size="sm">"Good products,excellent se..."</Heading>
           <Text>Good products, excellent service. Twice I had problems with delivery, both times their Customer Serv...</Text>
@@ -105,7 +106,7 @@ export default function Home(){
         </Box>
       </Flex>
       <Flex>
-        <Box class={styles.rating}>
+        <Box className={styles.rating}>
           <Text>⭐⭐⭐⭐⭐</Text>
           <Heading size="sm">"Good Shirts"</Heading>
           <Text>Good products, excellent service. Twice I had problems with delivery, both times their Customer Serv...</Text>
@@ -169,7 +170,7 @@ export default function Home(){
 
   {/* ------------9th personal appoint ------------ */}
 
-      <Flex bg="#F5F5F5" mt='50px' id={styles.personal}>
+      <Flex bg="#F5F5F5" mt='50px' id={styles.personal} >
       <Box width='50%' padding='50px'>
         <img src="https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dw4b7530c7/merchAssets/SS22/Homepage/wide-banner/hp6-store-desktop.jpg" />
       </Box>
@@ -183,8 +184,11 @@ export default function Home(){
 
       </Flex>
 
-        {//WASET BOX 
-        <Box/>}
+      <Footer/>
+
+        
+
         </Box>
+
     )
 }
