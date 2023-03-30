@@ -1,17 +1,17 @@
 import {Box,Heading,Button,Center} from '@chakra-ui/react'
 import video from './../../../Banner/homepagevideo.mp4'
-import styles from './../../Module/Video.module.css'
+import styles from './../../Styles/Video.module.css'
 
 
 function Video(){
     return(
         <Box marginTop='65px' id={styles.container}>
-        <video autoPlay loop muted>
+        <video autoPlay loop muted width='100%'>
             <source src={video} type="video/mp4" />
         </video>
         <Center>
         <Box id={styles.textOverVideo}>
-          <Heading color="whit" size="2xl"> We're Hitting the Refresh Button</Heading>
+          <Heading color="white" size="2xl"> We're Hitting the Refresh Button</Heading>
          <Box id={styles.textOverVideoBox2}> <Heading size='lg'>4 SHIRTS OR POLOS FOR $239</Heading>
           <Heading size='lg'>SAVE UP TO $235</Heading></Box>
         </Box>

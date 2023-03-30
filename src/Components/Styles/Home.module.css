@@ -1,0 +1,112 @@
+*{
+    /* border: 1px solid rgb(21, 255, 0); */
+}
+
+#container{
+    position: relative;
+}
+
+
+.box3Banner{
+    font-family: Futura,Arial;
+    width: 60%;
+    text-align: left;
+    margin-left: 40px;
+    position: absolute;
+    bottom: 40%;
+    color: white;
+    line-height: 1.5;
+    word-spacing: 2px;
+    font-weight: lighter;
+    
+}
+
+#box3Button{
+    font-family: Futura,Arial;
+    background-color: rgb(193, 193, 193);
+    letter-spacing: 2px;
+    border-radius: 0;
+    padding: 10px 35px;
+    font-size: 12px;
+    position: absolute;
+    bottom: 25%;
+    left: 3%
+}
+
+.box3part2Vstack{
+    /* background-color: red; */
+    padding: 15px 0;
+    padding-top: 25px;
+    line-height: 1.5;
+    word-spacing: 2px;
+}
+
+#box3part2Vstack_Button{
+    border: 1px solid rgb(113, 111, 111);
+    padding: 5px;
+    width: 50%;
+    border-radius: 0;
+    /* background-color: red; */
+    margin: 25px;
+}
+
+.rating{
+    /* background-color: red; */
+    margin-top: 15px;
+    line-height: 1.9;
+    padding: 25px;
+    /* background-color: red; */
+    /* width: 95%; */
+    margin: auto;
+}
+
+
+#box3Button1{
+    font-family: Futura,Arial;
+    letter-spacing: 2px;
+    border-radius: 0;
+    background-color: unset;
+    border: 2.5px solid white;
+    color: white;
+    border-image: linear-gradient(45deg, orange,red, blue) 1;
+    font-size: 12px;
+    position: absolute;
+    bottom: 25%;
+    left: 10%;
+    width: 15%;
+    padding: 25px;
+}
+
+#box3Button1:hover{
+    box-shadow: rgba(247, 246, 246, 0.35) 0px 8px 15px;
+}
+
+#box3Button2{
+    font-family: Futura,Arial;
+    background-color: unset;
+    border: 1.5px solid white;
+    color: white;
+    letter-spacing: 2px;
+    border-radius: 0;
+    font-size: 12px;
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    width: 15%;
+    padding: 25px;
+}
+
+#box3Button2:hover{
+    background-color: white;
+    color: black;
+}
+
+.carbonNutral{
+    width: 25%;
+    padding: 20px;
+    padding-bottom: 30px;
+}
+
+#personal{
+    position: relative;
+}
