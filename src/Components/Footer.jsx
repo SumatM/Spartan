@@ -18,7 +18,7 @@ function Footer(){
 
         <Box  marginTop='50px' textAlign='start' padding='20px'>
             <Flex justify='space-evenly' id={footer.textallign} >
-                <Stack w='25%' >
+                <Stack w='17%' >
                     <Heading size='sm'>HELP</Heading>
                     <Stack >
                         <Text fontSize='xs'>FAQS</Text>
@@ -32,7 +32,7 @@ function Footer(){
                     </Stack>
                 </Stack>
 
-                <Stack  width='25%'>
+                <Stack  width='20%' >
                     <Heading size='sm'>MORE INFO</Heading>
                     <Stack>
                         <Text  fontSize='xs'>ABOUT US</Text>

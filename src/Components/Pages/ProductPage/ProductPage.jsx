@@ -208,7 +208,7 @@ export default function ProductPage({page}){
                     return (
                         <Box mt='15px'mb='15px'>
                         <Heading size='sm'>{Object.keys(elem)}</Heading>
-                        <Box key={elem} mt='10px' borderTop='1px solid gray'>
+                        <Box key={elem} mt='10px' borderTop='1px solid gray' >
                             {elem[Object.keys(elem)].map((item)=>{
                                 return <Box m='5px' key={item}>
                                 <Checkbox onChange={(e)=>{handlecheckbox(e.target.checked,item,Object.keys(elem)[0])}} size='md' colorScheme='green'><Text fontSize='xs'>{item}</Text></Checkbox>
