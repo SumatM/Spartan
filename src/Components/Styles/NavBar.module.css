@@ -16,4 +16,29 @@
     width: 50%;
 }
 
+#navbarborder>a{
+    /* background-color: greenyellow; */
+    padding: 1px 20px;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    height: 20px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-align: center;
+}
 
+#navbarborder>p{
+    /* background-color: red; */
+    padding: 1px 20px;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+
+#fixedNav{
+    position: sticky;
+    width: 100%;
+}

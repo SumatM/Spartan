@@ -15,14 +15,14 @@ const NavBar = () => {
 
     <Box width="30%"  h="70px" marginTop="30px">
     <HStack>
-    <Link to='/'>
+    <Link to='#'>
     <Flex>
     <Spacer/>
     <img  className={styles.leftIcon} id={styles.location}  src="https://cdn-icons-png.flaticon.com/512/927/927667.png"/>
     </Flex>
     </Link>
     
-   <Link to=''>
+   <Link to='/login'>
    <Flex>
    <img   className={styles.leftIcon} src="https://cdn-icons-png.flaticon.com/512/2354/2354573.png"/>
    <Spacer/>
@@ -44,7 +44,7 @@ const NavBar = () => {
         {/*---- box1 for Search ----*/}
 
 
-    <Box width="30%"  h="70px"  >
+    <Box width="30%" p='20px' >
     <Input  bg="#EBEDF3" variant='outline' placeholder='Search' size="md" w="60%" m="0" marginTop="15px" borderRadius="5px 0 0 5px"/>
     <IconButton m="0" bg="#EBEDF3" aria-label='Search database' marginTop="-5px" borderRadius="0 5px 5px 0" icon={<SearchIcon />} />
     </Box>
@@ -52,31 +52,15 @@ const NavBar = () => {
         <Link to=''><img className={styles.bag} src="https://cdn-icons-png.flaticon.com/512/1063/1063376.png"/></Link>
     </Box>
     </HStack>
-    <Flex  h='30px' bg="#EBEDF3" justifyContent="center">
-        <Flex alignItems="center" justifyContent="space-between" width='60%'>
+    <Flex  h='40px' bg="#EBEDF3" justifyContent="center" id={styles.fixedNav}>
+        <Flex alignItems="center" justifyContent="space-between" id={styles.navbarborder} width='70%'>
           <Link to='/shirt'><Text >SHIRTS</Text></Link>
-          <Text>SUITS</Text>
-          <Menu>
-            <MenuButton mr={4}>
-            PANTS
-            </MenuButton>
-            <MenuList>
-              <MenuItem>PANTS </MenuItem>
-              <MenuItem>PANTS </MenuItem>
-              <MenuItem>PANTS </MenuItem>
-            </MenuList>
-          </Menu>
-          <Menu>
-            <MenuButton mr={4}>
-            PANTS
-            </MenuButton>
-            <MenuList>
-              <MenuItem>PANTS </MenuItem>
-              <MenuItem>PANTS </MenuItem>
-              <MenuItem>PANTS </MenuItem>
-            </MenuList>
-          </Menu>
-          <Text >SHOES</Text>
+         <Link to='/suit'> <Text>SUITS</Text></Link>
+          <Link to='/pant'> <Text>PANTS</Text></Link>
+          <Link to='#'> <Text>SWEATERS</Text></Link>
+          <Text>JACKETS & COATS</Text>
+         <Link to='/shoe'> <Text >SHOES</Text></Link>
+         <Text>ACCESSORIES</Text>
         </Flex>
       </Flex> 
     </Box>
