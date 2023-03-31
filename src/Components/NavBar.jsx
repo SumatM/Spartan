@@ -55,28 +55,13 @@ const NavBar = () => {
     <Flex  h='30px' bg="#EBEDF3" justifyContent="center">
         <Flex alignItems="center" justifyContent="space-between" width='60%'>
           <Link to='/shirt'><Text >SHIRTS</Text></Link>
-          <Text>SUITS</Text>
-          <Menu>
-            <MenuButton mr={4}>
-            PANTS
-            </MenuButton>
-            <MenuList>
-              <MenuItem>PANTS </MenuItem>
-              <MenuItem>PANTS </MenuItem>
-              <MenuItem>PANTS </MenuItem>
-            </MenuList>
-          </Menu>
-          <Menu>
-            <MenuButton mr={4}>
-            PANTS
-            </MenuButton>
-            <MenuList>
-              <MenuItem>PANTS </MenuItem>
-              <MenuItem>PANTS </MenuItem>
-              <MenuItem>PANTS </MenuItem>
-            </MenuList>
-          </Menu>
-          <Text >SHOES</Text>
+         <Link to='/suit'> <Text>SUITS</Text></Link>
+          <Text></Text>
+          <Link to='/pant'> <Text>PANTS</Text></Link>
+          <Text></Text>
+          <Link to='#'> <Text>SWEATERS</Text></Link>
+          <Text></Text>
+         <Link to='/shoe'> <Text >SHOES</Text></Link>
         </Flex>
       </Flex> 
     </Box>

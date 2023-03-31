@@ -10,6 +10,7 @@ function AllRoutes(){
             <Route path="/shirt" element={<ProductPage page={'shirt'}/>}></Route>
             <Route path="/suit" element={<ProductPage page={'suit'}/>  }></Route>
             <Route path="/pant" element={<ProductPage page={'pant'}/>}></Route>
+            <Route path="/shoe" element={<ProductPage page={'shoe'}/>}></Route>
 
         </Routes>
     )
