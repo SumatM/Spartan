@@ -2,11 +2,57 @@ import { Button, FormControl, FormLabel, Input, Stack,Box, Heading,Flex ,Text, c
 import {FaRegClipboard} from 'react-icons/fa'
 import {BsEnvelopeOpen} from 'react-icons/bs'
 import {GiSafetyPin} from 'react-icons/gi'
+import Footer from './../Footer'
+import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
 
 export default function LogIn(){
 
+  let passwordInput = useRef(null)
+
+  let [loginInput,setLoginInput] = useState({
+    email:'',
+    password:''
+  })
+
+  function checkPassword(password){
+     const regex =
+    /^(?=.+[a-z])(?=.+[A-Z])(?=.+[0-9])(?=.+[\$\%\^\&\!@\#\*\(\)\+\=`~\?\>\<])/;
+  return regex.test(password) && password.length >= 8;
+  }
+
+
+  function handlechange(e){
+    console.log(e.target.value,e.target.type)
+    if(e.target.type=='email'){
+      setLoginInput({...loginInput,email:e.target.value})
+    }else{
+      setLoginInput({...loginInput,password:e.target.value})
+    }
+  }
+
+  function handleLoginButton(e){
+    e.preventDefault();
+    if(checkPassword((loginInput.password))){
+      setLoginInput({
+        email:'',
+        password:''
+      })
+  }else{
+    console.log(loginInput)
+    //passwordInput.current.wrong=true;
+    //console.log((passwordInput.current).wrong=true)
+    //(passwordInput.current).border.color='red'
+    
+  }
+
+}
+
+
+
     return (
-        <Flex mt='85px'>
+        <Box mt='85px'> 
+        <Flex>
         <Box w='50%'>
         <Box w='70%' m='auto' textAlign='start'  >
             <Heading size='lg' p='20px' fontFamily='Roboto, Mono, monospace' letterSpacing='1px'>My Account</Heading>
@@ -15,17 +61,17 @@ export default function LogIn(){
             <FormControl>
               <FormLabel  letterSpacing='0.8px'>Email address</FormLabel>
               <Text fontSize='xs' mb='7px' color='red'>{}</Text>
-              <Input border='1px solid black' type="email" borderRadius='0px'/>
+              <Input value={loginInput.email} border='1px solid black' type="email" borderRadius='0px' onChange={handlechange}/>
             </FormControl>
     
             <FormControl>
               <FormLabel mt='20px' letterSpacing='0.8px'>Password</FormLabel>
-              <Input border='1px solid black' type="password"  borderRadius='0px'/>
+              <Input ref={passwordInput} value={loginInput.password} border='1px solid black' type="password"  borderRadius='0px'onChange={handlechange}  errorBorderColor='crimson' />
             </FormControl>
             <Text fontSize='xs'>Forgotten your password?</Text>
             <br/>
-            <Button bg='black' borderRadius='0px' color='white' type="submit" _hover={
-                {color:'white',bg:'gray'}
+            <Button onClick={handleLoginButton} bg='#001F49' borderRadius='0px' color='white' type="submit" _hover={
+                {color:'white',bg:'#7C8DA4'}
             }>
               Login
             </Button>
@@ -55,15 +101,20 @@ export default function LogIn(){
             <Text ml='10px' fontSize='sm'>Check order status</Text>
             </Flex>
             <br/>
-            <Button bg='black' borderRadius='0px' color='white' type="submit" _hover={
-                {color:'white',bg:'gray'}
+            <Link to='/signup'><Button bg='#001F49' borderRadius='0px' color='white' type="submit" _hover={
+                {color:'white',bg:'#7C8DA4'}
             }>
-              CREATE AN ACCOUNT NOW
-            </Button>
+              <Text fontSize='sm' >CREATE AN ACCOUNT NOW</Text>
+            </Button></Link>
           </Stack>
         </Box>
         </Box>
         </Flex>
+
+            {/* -------------footer part----------- */}
+            <Footer/>
+
+        </Box>
       );
     
 }

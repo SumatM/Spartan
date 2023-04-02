@@ -1,86 +1,53 @@
-import {Box,Heading, HStack, VStack,Text,Select,Flex,Grid,Checkbox,Stack,Input,CardFooter,Button, Center} from '@chakra-ui/react'
-import {useState, useEffect, useReducer} from 'react'
-import {ChevronRightIcon} from '@chakra-ui/icons'
+import {Box,Heading, HStack, VStack,Text,Select,Flex,Grid,Checkbox,Stack,Input,CardFooter,Button, Center,IconButton,} from '@chakra-ui/react'
+import {useState, useEffect, useReducer,useContext} from 'react'
 import pageinfo from './pageinfo';
 import Footer from './../../Footer';
 import { getPageData } from './../../../axios';
 import Cards  from './Cards';
 import Loading from '../../../Loading';
 import Pagination from '../../../Pagination';
-import {ArrowBackIcon,ArrowForwardIcon} from '@chakra-ui/icons'
+import {ArrowBackIcon,ArrowForwardIcon,ChevronRightIcon,SearchIcon} from '@chakra-ui/icons'
+import reducerfun from './reducer.js'
+import {intialstate} from './reducer.js'
+import {AuthConetextProvider} from './../../AuthContext/AuthContext'
+import { useNavigate } from 'react-router-dom';
 
 
-let intialstate = {
-    loading:false,
-    error:false,
-    apiKey:'',
-    perpageitem:20,
-    currPage:1,
-    filter:[],
-}
+
+let globaData = [];
 
 
-function reducerfun(state,action){
-    console.log(state.filter);
-    switch(action.type){
-        case "loading" :{
-            return {...state,loading:action.payload}
-        }
-        case "error" :{
-            return {...state,error:action.payload}
-        }
-        case "apiKey" :{
-            return {...state,apiKey:action.payload}
-        }
-        case "perpageitem" : {
-            return {...state,perpageitem:action.payload}
-        }case "currPage" : {
-            return {...state,currPage:action.payload}
-        }
-        case "pagemovement" : {
-            return {...state,currPage:state.currPage+action.payload}
-        }
-        case "pagemovement" : {
-            return {...state,currPage:state.currPage+action.payload}
-        }
-        case "filteradd" :{
-            return {...state,filter:[...state.filter,(action.payload)]}
-        }
-        case "filterremove" :{
-            let filterremover = state.filter.filter((item)=>{
-                return item!==action.payload
-            })
-            //console.log(filterremover)
-            return {...state,filter:[...intialstate.filter,...filterremover]}
-        }
-        case "reset" :{
-            return {...intialstate}
-        }
-        default:{
-            return state
-        }
-    }
-}       
+     
 
 
 
 export default function ProductPage({page}){
 
     const [flag,setflag] = useState("")
+
+    // useing values from authcontext provider
     
-    
+    const {handlesetSearchfunction,searchdata} = useContext(AuthConetextProvider)
+
+    let searchInput = (searchdata.searchInput)
+
 //-----------------------------------------------------------------
   
    let [apidata,setApidata] = useState([])
    let [totalitems,setTotalItems] = useState(0)
    let [maindata,dispatch] = useReducer(reducerfun,intialstate)
-   let {loading,error,apiKey,perpageitem,currPage} =  maindata 
+   let {loading,error,apiKey,perpageitem,currPage,order} =  maindata 
     let section = page[0].toUpperCase();
-
+    
 //---------------------------------------------
     let filterdiv = (pageinfo[page].filter)
-    console.log(filterdiv)
+    //console.log(filterdiv)
 //---------------------------------------------
+
+const [search,setSearchData] = useState('')
+
+let navigate = useNavigate()
+
 //-------------------------------------------------------------------  
 
     for (let i=0; i<page.length; i++){
@@ -89,15 +56,33 @@ export default function ProductPage({page}){
        }
     }
 
+    if(page=='product'){
+        section = 'Search'
+    }
+
 //---------------------------------------------------------------------
     useEffect(()=>{
         setflag(page)
+        if(page!=='product'&& searchInput!==''){
+            handlesetSearchfunction('')
+        }
+
     },[page])
+
+// will come in effect when user has change the page no. and searched for new query 
+
+    useEffect(()=>{
+        if(page=='product' ){
+            dispatch({type:'currPage', payload:1})
+           }    
+    },[searchInput])
+
+
+// receiving promise from axios 
 
 
     useEffect(()=>{
     dispatch({type:'loading',payload:true})
-
     if(flag!==page){
         console.log(flag,page);
        // dispatch({type:"currPage",payload:1})
@@ -108,12 +93,17 @@ export default function ProductPage({page}){
       getPageData({
       page:currPage,
       limit:perpageitem,
-      pageType:[page],
+      pageType:page,
+      sort:'price',
+      order:order,
+      q:searchInput,
+
       })
     .then((res)=>{
 
         let totalpagesrecieved = (res.headers.get('X-total-Count'))
         setApidata(res.data)
+        globaData = res.data
         setTotalItems(totalpagesrecieved)
        // console.log(totalpagesrecieved)
         dispatch({type:'loading',payload:false})
@@ -121,11 +111,11 @@ export default function ProductPage({page}){
      })
      .catch(function(error){
         dispatch({type:'error',payload:true})
-       // console.log(error)
+        console.log(error)
      })
      
      
-    },[page,perpageitem,currPage])
+    },[page,perpageitem,currPage,order,searchInput])
 
     // handleperpage item 
 
@@ -140,19 +130,57 @@ export default function ProductPage({page}){
             dispatch({type:"currPage",payload:val})
     }
 
+    // handleNext and Pre Buttons
+
     function handlenextPreButton(val){
          dispatch({type:'pagemovement',payload:val})
     }
 
+    // handle filter 
+
     function handlecheckbox(val,item,catageory){
-       // console.log(val,item,catageory)
+       //console.log(val,item,catageory)
         if(val){
             dispatch({type:'filteradd',payload:item})
         }else{
             dispatch({type:'filterremove',payload:item})
         }
+       // console.log(maindata.filter[0])
+       // console.log(globaData);
+
+       if(maindata.filter.length==0){
+         maindata.filter.push('a')
+        // console.log(maindata.filter)
+       }
+
+        let filterdata = globaData.filter((ele)=>{
+            //console.log(ele.title.includes("Iron"));
+           // console.log(maindata.filter.includes(('BLUE 345 gdfg').split(' ')))
+              return(maindata.filter.includes(ele.title.toUpperCase()))
+            //    (ele.title.toUpperCase()).includes(maindata.filter[0].toUpperCase())
+        })
+        //console.log(filterdata)
     }
+
+    // handle sorting;
    
+    function handlesorting(e){
+       // console.log(e.target.value);
+        dispatch({type:'order',payload:e.target.value})
+    }
+
+    const handleSearch = (e) =>{
+        setSearchData(e.target.value)
+      }
+    
+      const handleSearchButton = (e)=>{
+        
+        navigate('/search')
+        //console.log(search)
+        handlesetSearchfunction(search)
+        setSearchData('')
+      }
+
 
     return(
         <Box width='97%' m='auto' marginTop='75px'>
@@ -161,7 +189,7 @@ export default function ProductPage({page}){
 
           <Box>
            <HStack padding='10px 0'><Heading size='xs'>Home {<ChevronRightIcon/>} {section}</Heading></HStack>
-            <Box>
+          {page=='product' ? null :   <Box>
             <HStack>
                 <Box width='50%' letterSpacing='0.8px'>
                     <Box  padding='35px' textAlign='start'>
@@ -175,20 +203,20 @@ export default function ProductPage({page}){
                 <img width='100%'  src={pageinfo[page]?.topbanner} alt='' />
                 </Box>
             </HStack>
-            </Box>
+            </Box>}
 
-            <Flex justify='end' alignItems='center' padding='5px' mt='25px'  borderTop='1px solid gray' borderBottom='1px solid gray'>
+            <Flex justify='end' alignItems='center' padding='9px' mt='25px'  borderTop='1px solid gray' borderBottom='1px solid gray'>
             <Text marginRight='25px' fontSize='xs'>Showing 1 - {apidata.length}  of {totalitems}</Text>
-            <Select marginRight='25px' w='9%' onChange={handleperpageitem} value={perpageitem}>
+            <Select border='1px solid gray' marginRight='25px' w='9%' onChange={handleperpageitem} value={perpageitem}>
                 <option value='20'>20</option>
                 <option value='10'>10</option>
                 <option value='30'>30</option>
                 <option value='40'>40</option>
                 </Select>
-                <Select w='25%' placeholder='SORT BY' fontSize='13px'>
+                <Select w='25%' border='1px solid gray' placeholder='SORT BY' fontSize='13px' onChange={handlesorting} value={order}>
                 <option value='recommended'>RECOMMENDED</option>
-                <option value='asc'>PRICE (HIGHT TO LOW)</option>
-                <option value='dec'>PRICE (LOW TO HIGH)</option>
+                <option value='desc'>PRICE (HIGHT TO LOW)</option>
+                <option value='asc'>PRICE (LOW TO HIGH)</option>
                 </Select>
             </Flex>
 
@@ -222,7 +250,16 @@ export default function ProductPage({page}){
             </Box> 
            </Box>
            <Box  width='84%' padding='25px'>
-           {loading ? <Loading/> : 
+           {loading ? <Loading/> : (page=='product' && apidata.length==0) ? 
+           <Box mt='30px' mb='100px'>
+            <Text letterSpacing='1px' fontSize='2xl'>
+            Sorry, we couldn't find any results matching <Heading size='lg' display='inline'>"{searchInput}"</Heading>
+            </Text>
+            <Box width="70%" p='20px' m='auto' mt='25px'>
+                <Input p={2} onChange={handleSearch}  bg="#EBEDF3" variant='outline' value={search} placeholder='Search again' size="md" w="60%" m="0" marginTop="15px" borderRadius="5px 0 0 5px"/>
+                <IconButton onClick={handleSearchButton} m="0" bg="#EBEDF3" aria-label='Search database' marginTop="-5px" borderRadius="0 5px 5px 0" icon={<SearchIcon />} />
+                </Box>
+           </Box> :
             <Grid templateColumns='repeat(4, 1fr)' gap={4}>
                 {apidata.map((item)=>{
                     return (<Cards key={item.id} {...item}/>)

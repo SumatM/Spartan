@@ -1,12 +1,40 @@
 import { Box, Flex, Menu, MenuButton, MenuList, MenuItem,Center,Text, HStack, Divider,Spacer,Input, IconButton  } from "@chakra-ui/react";
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import logo from './../Logo/logo-no-background.svg'
 import {SearchIcon} from '@chakra-ui/icons'
 
 import styles from './Styles/NavBar.module.css'
+import { useContext,useState } from "react";
+import { AuthConetextProvider } from "./AuthContext/AuthContext";
 
 
 const NavBar = () => {
+
+  const [search,setSearchData] = useState('')
+
+  let navigate = useNavigate()
+
+
+  // handle Search function;
+
+
+  const handleSearch = (e) =>{
+    setSearchData(e.target.value)
+  }
+
+  const handleSearchButton = (e)=>{
+    
+    navigate('/search')
+    //console.log(search)
+    handlesetSearchfunction(search)
+    setSearchData('')
+  }
+
+  const {handlesetSearchfunction,searchdata} = useContext(AuthConetextProvider)
+
+
+
+
   return (
     <Box  h='90px' paddingTop='20px' marginBottom='0px' >
     <HStack spacing="0"  m='0'>
@@ -45,8 +73,8 @@ const NavBar = () => {
 
 
     <Box width="30%" p='20px' >
-    <Input  bg="#EBEDF3" variant='outline' placeholder='Search' size="md" w="60%" m="0" marginTop="15px" borderRadius="5px 0 0 5px"/>
-    <IconButton m="0" bg="#EBEDF3" aria-label='Search database' marginTop="-5px" borderRadius="0 5px 5px 0" icon={<SearchIcon />} />
+    <Input onChange={handleSearch}  bg="#EBEDF3" variant='outline' value={search} placeholder='Search' size="md" w="60%" m="0" marginTop="15px" borderRadius="5px 0 0 5px"/>
+    <IconButton onClick={handleSearchButton} m="0" bg="#EBEDF3" aria-label='Search database' marginTop="-5px" borderRadius="0 5px 5px 0" icon={<SearchIcon />} />
     </Box>
     <Box width="5%">
         <Link to=''><img className={styles.bag} src="https://cdn-icons-png.flaticon.com/512/1063/1063376.png"/></Link>

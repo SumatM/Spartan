@@ -1,5 +1,5 @@
 {
-  "shirt":[
+  "product":[
     {
       "id": 1211,
       "img": "https://www.charlestyrwhitt.com/dw/image/v2/AAWJ_PRD/on/demandware.static/-/Sites-ctshirts-master/default/dw2e8e125f/hi-res/FON0409WHT_COLLAR_DETAIL.jpg?sw=430&sh=538&sm=fit&q=42",
@@ -779,10 +779,7 @@
       "discount": 60,
       "addon": "New color",
       "category": "shirt"
-    }
-  ],
-  "shoe":[
-        {
+    },{
           "id": 1280,
           "img": "https://www.charlestyrwhitt.com/dw/image/v2/AAWJ_PRD/on/demandware.static/-/Sites-ctshirts-master/default/dwb6d1a5d1/hi-res/SHB0270TBR_SIDE.jpg?sw=430&sh=538&sm=fit&q=42",
           "color": "4 Colors",
@@ -1441,8 +1438,7 @@
           "title": "Leather Chelsea Boots - Dark Chocolate",
           "price": 249,
           "category": "shoe"
-        }
-  ],"suit":[
+        },
         {
           "img": "https://www.charlestyrwhitt.com/dw/image/v2/AAWJ_PRD/on/demandware.static/-/Sites-ctshirts-master/default/dwe59bf263/hi-res/SUB60NAV_MODEL_FRONT.jpg?sw=430&sh=538&sm=fit&q=42",
           "title": "Natural Stretch Twill Suit - Navy",
@@ -1687,8 +1683,7 @@
           "price": 749,
           "id": 1837,
           "category": "suit"
-        }
-  ],"pant":[
+        },
         {
           "id": 1341,
           "img": "https://www.charlestyrwhitt.com/dw/image/v2/AAWJ_PRD/on/demandware.static/-/Sites-ctshirts-master/default/dw33efa430/hi-res/TRC0270TAN_MODEL_FULL_FRONT.jpg?sw=430&sh=538&sm=fit&q=42",
