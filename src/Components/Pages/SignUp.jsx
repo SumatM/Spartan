@@ -32,7 +32,7 @@ export default function SignUp(){
         <Flex>
         <Box w='60%' >
         <Box w='80%' m='auto' textAlign='start'  >
-            <Heading size='lg' p='20px' fontFamily='Roboto, Mono, monospace' letterSpacing='1px'>Create account</Heading>
+            <Heading size='lg' p='20px' letterSpacing='1px'>Create Account</Heading>
         <form >
           <Stack spacing={3} width='90%' p='10px' mt='20px' letterSpacing='0.5px'>
 {/* Title */}

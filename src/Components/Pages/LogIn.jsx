@@ -55,7 +55,7 @@ export default function LogIn(){
         <Flex>
         <Box w='50%'>
         <Box w='70%' m='auto' textAlign='start'  >
-            <Heading size='lg' p='20px' fontFamily='Roboto, Mono, monospace' letterSpacing='1px'>My Account</Heading>
+            <Heading size='lg' p='20px' letterSpacing='1px'>My Account</Heading>
         <form >
           <Stack spacing={3} width='90%' p='10px' mt='20px'>
             <FormControl>
@@ -82,7 +82,7 @@ export default function LogIn(){
         {/* -----------2nd box for signup----------- */}
         <Box w='50%' h='400px'>
         <Box w='70%' m='auto' textAlign='start'  >
-            <Heading size='lg' p='20px' fontFamily='Roboto, Mono, monospace' letterSpacing='1px'>New customers</Heading>
+            <Heading size='lg' p='20px' letterSpacing='1px'>New Customers</Heading>
           <Stack spacing={3} width='90%' p='10px' mt='20px'>
           <Text>Set up an account with us and you will be able to:</Text>
           <Flex>

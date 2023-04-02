@@ -66,6 +66,7 @@ let navigate = useNavigate()
         if(page!=='product'&& searchInput!==''){
             handlesetSearchfunction('')
         }
+        document.title = `Spartan ${section}'s Store`
 
     },[page])
 
@@ -89,6 +90,7 @@ let navigate = useNavigate()
         //dispatch({type:"perpageitem",payload:20})
         dispatch({type:'reset'})
     }
+
 
       getPageData({
       page:currPage,

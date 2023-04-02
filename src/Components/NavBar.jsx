@@ -77,7 +77,7 @@ const NavBar = () => {
     <IconButton onClick={handleSearchButton} m="0" bg="#EBEDF3" aria-label='Search database' marginTop="-5px" borderRadius="0 5px 5px 0" icon={<SearchIcon />} />
     </Box>
     <Box width="5%">
-        <Link to=''><img className={styles.bag} src="https://cdn-icons-png.flaticon.com/512/1063/1063376.png"/></Link>
+        <Link to='/cart'><img className={styles.bag} src="https://cdn-icons-png.flaticon.com/512/1063/1063376.png"/></Link>
     </Box>
     </HStack>
     <Flex  h='40px' bg="#EBEDF3" justifyContent="center" id={styles.fixedNav}>
