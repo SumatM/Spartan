@@ -39,6 +39,6 @@
 
 
 #fixedNav{
-    position: sticky;
+    /* border: 1px solid black; */
     width: 100%;
 }
