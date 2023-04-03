@@ -18,65 +18,89 @@ Spartan offers high-quality products, made with the finest materials and crafted
 ### Quick Preview 
 
 ### Live Demo -
-<p align="center"> Landing Page</p>
+<br/>
+<br/>
+
+ <h3 align='center'>Landing Page</h3>
+ <br/>
 <p align="center">
  <img style="margin-right: 10px" src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(504).png" width='70%'>
 </p>
-<p align="center">Footer Section</p>
+<br/>
+<h3 align='center'>Footer Section</h3>
+<br/>
 <p align="center">
   <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(505).png" width='70%'>
 </p>
+<br/>
 
-<p align="center">Login Page</p>
+<h3 align='center'>Login Page</h3>
+<br/>
 <p align="center">
   <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(506).png" width='70%'>
 </p>
+<br/>
 
-<p align="center">Login Page</p>
+<h3 align='center'>SignUp Page</h3>
+<br/>
 <p align="center">
   <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(507).png" width='70%'>
 </p>
+<br/>
 
-<p align="center">Select Per item on Page</p>
+<h3 align='center'>Select Per item on Page</h3>
 <p align="center">
   <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(511).png" width='70%'>
 </p>
+<br/>
 
-<p align="center">Suit's Page</p>
+<h3 align='center'>Suit's Page</h3>
 <p align="center">
   <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(517).png" width='70%'>
 </p>
+<br/>
 
-<p align="center">Cart Page without LogIn</p>
+
+<h3 align='center'>Cart Page without LogIn</h3>
 <p align="center">
   <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(512).png" width='70%'>
 </p>
+<br/>
 
-<p align="center">Cart Page with LogIn</p>
+<h3 align='center'>Cart Page with LogIn</h3>
 <p align="center">
   <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(513).png" width='70%'>
 </p>
+<br/>
 
-<p align="center">Search Products and No Search Item Found</p>
+
+<h3 align='center'>Search Products and No Search Item Found</h3>
 <p align="center">
   <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(514).png" width='70%'>
 </p>
+<br/>
 
-<p align="center">Search Products</p>
+
+<h3 align='center'>Search Products</h3>
 <p align="center">
   <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(515).png" width='70%'>
 </p>
+<br/>
 
-<p align="center">Loading Data</p>
+
+<h3 align='center'>Loading Data</h3>
 <p align="center">
   <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(516).png" width='70%'>
 </p>
+<br/>
 
-<p align="center">Suit's Page</p>
+
+<h3 align='center'>Suit's Page</h3>
 <p align="center">
   <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(517).png" width='70%'>
 </p>
-
+<br/>
+<br/>
 
 
 
@@ -102,7 +126,7 @@ Spartan provides users with a convenient way to shop for high-quality men's clot
     <img src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_640.png" width="100" height="100">
     <img src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_640.png" width="100" height="100">
    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS76aVIo4u18ZBAVWU79QkDQ6uvKUjF4leJ7g&usqp=CAU" width="100" height="100">
-   <img src="https://blog.logrocket.com/wp-content/uploads/2021/04/optimize-react-native-performance.png" width="100" height="100">
+   <img src="https://blog.logrocket.com/wp-content/uploads/2021/04/optimize-react-native-performance.png" width="150" height="100">
    <img src="https://www.happylifecreators.com/wp/wp-content/uploads/2022/06/chakra-ui_title2-400x400.png" width="100" height="100">
    <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--FckeNU0D--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/36k73z7ceesz2jvrsi74.png" width="200" height="50">
    <img src="https://assets.tradeholders.com/img/technologies/json.png" width="200" height="100">
