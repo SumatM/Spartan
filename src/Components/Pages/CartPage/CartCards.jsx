@@ -1,10 +1,73 @@
 import { Heading,Box, Flex, Spacer,Text } from "@chakra-ui/layout";
 import {Button, Select} from '@chakra-ui/react'
 import {CloseIcon} from '@chakra-ui/icons'
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useContext } from "react";
+import { AuthConetextProvider } from "../../AuthContext/AuthContext";
 
-function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,category}){
 
-    console.log(id,price,title)
+function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,category,quantity,setCart,cart,setTotal}){
+
+    let data = {id,img,color,varient1,varient2,varient3,title,price,discount,category,quantity}
+
+
+    const {searchdata,setSearchData} = useContext(AuthConetextProvider)
+     
+    console.log(searchdata)
+
+
+    let [itemprice,setitemPrice] = useState(0);
+    let [item,setitem] = useState(1);
+
+    useEffect(()=>{
+        setitemPrice(price*quantity)
+        //console.log(price,quantity)
+        
+    },[cart])
+
+    useEffect(()=>{
+        let mytotal = cart.reduce((acc,item)=>{
+            return acc+item.price*item.quantity
+        },0)
+        //console.log(mytotal)
+    setTotal(mytotal)
+    },[itemprice])
+
+    function handleadditem(e){
+
+        let filtered = cart.filter((item)=>{
+            return item.id!==id
+        })
+
+        let updatedData = [...filtered,{...data,quantity:e.target.value}]
+        axios.patch(`https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`,{
+            cart:updatedData
+        })
+        .then((res)=>{
+            console.log(res);
+            setCart(res.data.cart);
+        })
+        
+    }
+
+    function handleDelete(){
+        let filtered = cart.filter((item)=>{
+            return item.id!==id
+        })
+
+        let updatedData = [...filtered]
+        axios.patch(`https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`,{
+            cart:updatedData
+        })
+        .then((res)=>{
+            //console.log(res);
+            alert(`${title} deleted`)
+            setCart(res.data.cart);
+        })
+    }
+
+
 
     return (
         <Box mb='30px' p='20px' borderBottom='1px solid gray' pd='40px'>
@@ -13,7 +76,7 @@ function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,
             <Heading textAlign='start' size='sm' letterSpacing='1px' fontWeight='normal'>{title}</Heading>
             </Box>
             <Spacer/>
-            <Box>
+            <Box onClick={handleDelete}>
                 <CloseIcon/>
             </Box>
         </Flex>
@@ -56,7 +119,8 @@ function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,
         <Box w='60%' mt='20px' >
                 <Flex justify={"space-between"}>
                     <Box>
-                        <Select borderRadius={0} w='120%' placeholder='1'>
+                        <Select borderRadius={0} value={quantity} w='120%' placeholder='1' onChange={handleadditem}>
+                        <option value='1'>1</option>
                         <option value='2'>2</option>
                         <option value='3'>3</option>
                         <option value='4'>4</option>
@@ -64,7 +128,7 @@ function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,
                     </Box>
                     <Box>
                         <Text>
-                            ${price+15.95}
+                            ${itemprice+15.95}
                         </Text>
                     </Box>
                 </Flex>

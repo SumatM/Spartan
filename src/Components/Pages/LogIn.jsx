@@ -1,29 +1,30 @@
-import { Button, FormControl, FormLabel, Input, Stack,Box, Heading,Flex ,Text, color} from "@chakra-ui/react";
+import { Button, FormControl, FormLabel, Input, Stack,Box, Heading,Flex ,Text,Modal,ModalOverlay, ModalContent,ModalHeader,ModalCloseButton,ModalBody,ModalFooter,useDisclosure,Lorem} from "@chakra-ui/react";
 import {FaRegClipboard} from 'react-icons/fa'
 import {BsEnvelopeOpen} from 'react-icons/bs'
 import {GiSafetyPin} from 'react-icons/gi'
 import Footer from './../Footer'
-import { Link } from "react-router-dom";
-import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useRef, useState } from "react";
+import { AuthConetextProvider } from "../AuthContext/AuthContext";
+import axios from "axios";
 
 export default function LogIn(){
 
   let passwordInput = useRef(null)
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  let navigate =useNavigate();
+  let [name,setname] = useState('')
+
+  let {searchdata,setSearchData} = useContext(AuthConetextProvider)
 
   let [loginInput,setLoginInput] = useState({
     email:'',
     password:''
   })
 
-  function checkPassword(password){
-     const regex =
-    /^(?=.+[a-z])(?=.+[A-Z])(?=.+[0-9])(?=.+[\$\%\^\&\!@\#\*\(\)\+\=`~\?\>\<])/;
-  return regex.test(password) && password.length >= 8;
-  }
-
 
   function handlechange(e){
-    console.log(e.target.value,e.target.type)
+   
     if(e.target.type=='email'){
       setLoginInput({...loginInput,email:e.target.value})
     }else{
@@ -33,18 +34,25 @@ export default function LogIn(){
 
   function handleLoginButton(e){
     e.preventDefault();
-    if(checkPassword((loginInput.password))){
-      setLoginInput({
-        email:'',
-        password:''
+    onOpen()
+    axios(`http://localhost:8080/user/?q=${loginInput.email}`)
+    .then((res)=>{
+      console.log(res.data);
+
+         res.data.forEach((item)=>{
+           if(item.email==loginInput.email&&item.password==loginInput.password){
+            setname(item)
+            console.log(item.id)
+            setSearchData({...searchdata,isAuth:true,userId:item.id})
+            onOpen()
+            // setTimeout(() => {
+            //   navigate('/')
+            // }, 1000);
+           }
       })
-  }else{
-    console.log(loginInput)
-    //passwordInput.current.wrong=true;
-    //console.log((passwordInput.current).wrong=true)
-    //(passwordInput.current).border.color='red'
-    
-  }
+    })
+  
+    console.log(searchdata);
 
 }
 
@@ -53,6 +61,23 @@ export default function LogIn(){
     return (
         <Box mt='85px'> 
         <Flex>
+        <Modal isOpen={isOpen} onClose={onClose} >
+        <ModalOverlay />
+        <ModalContent  borderRadius='0px'>
+          <ModalHeader color='green'>Login Successful</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text>Welcome! {name.name}</Text>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button borderRadius='0px' bg='#001F49' fontWeight='lighter' color='white' _hover={
+                {color:'white',bg:'#7C8DA4'}} mr={3} onClick={()=>{navigate('/')}}>
+             <Text>Home Page</Text>
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
         <Box w='50%'>
         <Box w='70%' m='auto' textAlign='start'  >
             <Heading size='lg' p='20px' letterSpacing='1px'>My Account</Heading>

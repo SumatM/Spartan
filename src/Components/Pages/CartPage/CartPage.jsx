@@ -1,26 +1,29 @@
-import { Box, Flex, Heading,Text } from "@chakra-ui/layout";
-import { useEffect, useState } from "react";
+import { Box, Flex, Heading,Text ,Button} from "@chakra-ui/react";
+import { useContext, useEffect, useState } from "react";
 import {getPageData} from './../../../axios'
 import axios from "axios";
 import CartCard from "./CartCards";
+import { AuthConetextProvider } from "../../AuthContext/AuthContext";
 
 
 function CartPage(){
 
     const [cart,setCart] = useState([])
+    const [total,setTotal] = useState(0)
 
-
-
-
+    const {searchdata,setSearchData} = useContext(AuthConetextProvider)
+    console.log(searchdata);
 
     useEffect(()=>{
         document.title = 'Cart'
-        axios( `https://men-clothing-mock-api-sumat.onrender.com/user/1`)
+        axios( `https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`)
         .then((res)=>{
-            console.log(res.data.cart)
+            //console.log(res.data.cart)
             setCart(res.data.cart);
         })
     },[])
+
+    
 
     return(
         <Box width='97%' m='auto' marginTop='95px'>
@@ -48,14 +51,49 @@ function CartPage(){
                 <Box>
                 <Heading size='md'fontWeight='light' letterSpacing='1px'>YOUR ITEMS{}</Heading>
                 </Box>
-                <Box>
+                <Box padding='25px'>
                     {cart.map((item)=>{
-                        return <CartCard {...item}/>
+                        return <CartCard {...item} setTotal={setTotal} setCart={setCart} cart={cart}/>
                     })}
                 </Box>
                 </Box>
-                <Box w='30%'>
+                <Box w='35%' padding='30px' pt='0' textAlign='start'>
+                    <Flex>
+                       <Box bg='#F5F5F5' w='100%' p='20px'pt='0'>
+                        <Box p='10px 0' borderBottom='1px solid gray'>
+                        <Text fontSize='md' fontWeight='light'>OFFER CODE</Text>
+                        </Box>
+                        <Box p='10px 0'>
+                        <Heading size='xs' >+ Have an offer code?</Heading>
+                        </Box>
+                       </Box> 
+                    </Flex>
                     
+                    <Flex mt='15px'>
+                       <Box bg='#F5F5F5' w='100%' p='20px' pb='70px'>
+                        <Box p='10px 0' >
+                        <Text fontSize='md' fontWeight='light' borderBottom='1px solid gray' pb='10px'>TOTAL</Text>
+                        </Box>
+                        <Flex p='8px 0' justify='space-between'>
+                        <Text fontSize='12px' >BAG TOTAL</Text> 
+                        <Text fontSize='13px' fontWeight='bold'>${total+15.95}</Text>
+                        </Flex>
+                        <Flex justify='space-between'>
+                        <Text fontSize='12px' >PREMIUM TRACKED SHIPPING</Text> 
+                        <Text fontSize='13px' fontWeight='bold'>${17.95}</Text>
+                        </Flex>
+                        <Text fontSize='10px' >Other shipping options available in checkout</Text>
+                        <Flex m='10px 0' mt='20px' justify='space-between'>
+                        <Text fontSize='12px' >TO PAY</Text>
+                        <Text fontSize='15px' fontWeight='bold'>${(total+15.95+17.95).toFixed(2)}</Text>
+                        </Flex>
+                        <Box>
+                            <Button w='100%' bg='#116A60' color='white' borderRadius={0}
+                             _hover={{ bg: '#38877F' }}><Text fontWeight='light'>SECURE CHECKOUT</Text></Button>
+                        </Box>
+                       </Box> 
+                    </Flex>
+
                 </Box>
             </Flex>
             }
