@@ -1,19 +1,43 @@
-import { Button, FormControl, FormLabel, Input, Stack,Box, Heading,Flex ,Text, Select, Checkbox, HStack, VStack} from "@chakra-ui/react";
+import { Button, FormControl, FormLabel, Input, Stack,Box, Heading,Flex ,Text, Select, Checkbox, HStack, VStack,Alert,AlertIcon} from "@chakra-ui/react";
 import {FaRegClipboard} from 'react-icons/fa'
 import {BsEnvelopeOpen} from 'react-icons/bs'
 import {GiSafetyPin} from 'react-icons/gi'
 import Footer from './../Footer'
 import {CheckIcon} from '@chakra-ui/icons'
-import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
+import axios from "axios";
 
 export default function SignUp(){
   let inputRef = useRef('')
+  let errorRef = useRef('')
+
+  let [formdata, setformdata] = useState({fname:'',title:'',lname:'',email:'',password:'',mobile:''})
+  let [alert,setAlert] = useState(false)
+  let redirect = useNavigate()
 
 
     function handlechange(e){
-      console.log(e.target.value)
-      
+    
+    let name = e.target.name;
+    let value = e.target.value;
+
+    if(name=='firstName'){
+    setformdata({...formdata,fname:value})
+    }else if(name=='lastName'){
+      setformdata({...formdata,lname:value})
+    }else if(name=='password'){
+      setformdata({...formdata,password:value})
+    }else if(name=='mobile'){
+      setformdata({...formdata,mobile:value})
+    }else if(name=='email'){
+      setformdata({...formdata,email:value})
+    }
+    else if(name=='title'){
+      setformdata({...formdata,title:value})
+    }
+
+      //console.log(formdata);
     }
 
     function handlePasswordShow(e){
@@ -22,6 +46,23 @@ export default function SignUp(){
       }else{
         (inputRef.current.type='password')
       }
+    }
+    function handlesignUp(e){
+      e.preventDefault()
+      //alert("Hello! I am an alert box!!");
+
+     let postdata = {name:`${formdata.title} ${formdata.fname} ${formdata.lname}`,mobile:formdata.mobile,email:formdata.email,password:formdata.password,cart:[],address:[]}
+
+     axios.post('http://localhost:8080/user',{
+      name:`${formdata.title} ${formdata.fname} ${formdata.lname}`,mobile:formdata.mobile,email:formdata.email,password:formdata.password,cart:[],address:[]
+     })
+     .then((res)=>{
+      //console.log(res);
+      setTimeout(() => {
+       return redirect('/login')
+      }, 2000);
+
+     })
     }
 
     
@@ -32,13 +73,13 @@ export default function SignUp(){
         <Flex>
         <Box w='60%' >
         <Box w='80%' m='auto' textAlign='start'  >
-            <Heading size='lg' p='20px' letterSpacing='1px'>Create Account</Heading>
+            <Heading size='lg' p='20px' letterSpacing='1px'>Create Account</Heading> 
         <form >
           <Stack spacing={3} width='90%' p='10px' mt='20px' letterSpacing='0.5px'>
 {/* Title */}
             <FormControl>
               <FormLabel  letterSpacing='0.8px'>Title</FormLabel>
-              <Select placeholder='CHOOSE A TITLE' fontSize='12px'  size='lg' w='35%' borderRadius='none' border='1px solid gray' onChange={handlechange}>
+              <Select name='title' placeholder='CHOOSE A TITLE' fontSize='12px'  size='lg' w='35%' borderRadius='none' border='1px solid gray' onChange={handlechange}>
                 <option value='mr'>MR</option>
                 <option value='mrs'>MRS</option>
                 <option value='ms'>MS</option>
@@ -53,24 +94,24 @@ export default function SignUp(){
             <FormControl>
               <FormLabel  letterSpacing='0.8px'>First name</FormLabel>
               <Text fontSize='xs' mb='7px' color='red'>{}</Text>
-              <Input onChange={handlechange} border='1px solid black' type="email" borderRadius='0px'/>
+              <Input onChange={handlechange} border='1px solid black' type="text" name='firstName' borderRadius='0px' />
             </FormControl>
             <FormControl>
               <FormLabel  letterSpacing='0.8px'>Last name</FormLabel>
               <Text fontSize='xs' mb='7px' color='red'>{}</Text>
-              <Input onChange={handlechange} border='1px solid black' type="email" borderRadius='0px'/>
+              <Input onChange={handlechange} border='1px solid black' type="text" name='lastName' borderRadius='0px'/>
             </FormControl>
 {/* email addres */}
             <FormControl>
               <FormLabel  letterSpacing='0.8px'>Email address</FormLabel>
               <Text fontSize='xs' mb='7px' color='red'>{}</Text>
-              <Input onChange={handlechange} border='1px solid black' type="email" borderRadius='0px'/>
+              <Input onChange={handlechange} border='1px solid black' type="email" name='email' borderRadius='0px'/>
             </FormControl>
 {/* password */}
             <FormControl>
               <FormLabel  letterSpacing='0.8px'>Password</FormLabel>
               <Text mb='10px' fontSize='xs'>Your password should be at least 8 characters in length, and contain at least 1 number and 1 letter.</Text>
-              <Input onChange={handlechange} border='1px solid black' type="password"  borderRadius='0px'
+              <Input onChange={handlechange} border='1px solid black' type="password" name='password' borderRadius='0px'
                 ref={inputRef}
               />
               <HStack mt='15px'>
@@ -82,7 +123,7 @@ export default function SignUp(){
             <FormControl>
               <FormLabel  letterSpacing='0.8px'>Phone</FormLabel>
               <Text mb='10px' fontSize='xs'>We'll only use this to contact you about your order or to send you SMS about your delivery</Text>
-              <Input onChange={handlechange} border='1px solid black' type="password"  borderRadius='0px'/>
+              <Input onChange={handlechange} border='1px solid black' type='mobile' name='mobile' borderRadius='0px'/>
 {/* checkbox  */}
               <Box bg='red`'>
               <HStack mt='15px'>
@@ -96,10 +137,10 @@ export default function SignUp(){
               </Box>
             </FormControl>
             <br/>
-            <Button bg='#001F49' borderRadius='0px' color='white' type="submit" _hover={
+            <Button bg='#001F49' fontWeight='light' borderRadius='0px' color='white' type="submit" onClick={handlesignUp} _hover={
                 {color:'white',bg:'#7C8DA4'}
             }>
-              Login
+              CREATE ACCOUNT
             </Button>
           </Stack>
         </form>
@@ -132,7 +173,7 @@ export default function SignUp(){
             <Link to='/login'><Button bg='#001F49' borderRadius='0px' p='25px' color='white' type="submit" _hover={
                 {color:'white',bg:'#7C8DA4'}
             }>
-              <Text fontSize='sm' fontFamily='sans-serif'>CLICK HERE TO LOG IN</Text>
+              <Text fontSize='sm' fontWeight='light' fontFamily='sans-serif'>CLICK HERE TO LOG IN</Text>
             </Button></Link>
           </Stack>
         </Box>

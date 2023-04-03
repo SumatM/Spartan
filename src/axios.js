@@ -5,6 +5,10 @@ let OfflineUrl = 'http://localhost:8080/'
 
 let baseUrl = 'https://men-clothing-mock-api-sumat.onrender.com/'
 
+    //baseUrl = OfflineUrl
+
+    console.log(baseUrl);
+
 function getPageData(params={}){
 
 
@@ -57,14 +61,6 @@ function postdata(params={}){
     })
 
 
-    // setTimeout(() => {
-
-    //     console.log(cartData[0].id==params.data.id)
-    // }, 1000);
-    
-    // console.log(params.data.id)
-
-
     // this check funtion will check is the param.data.id, is present in my cart or not , if yes alert or else add
 
 
@@ -75,6 +71,7 @@ function postdata(params={}){
         }
 
         //console.log('after this')
+        params.data = {...params.data,quantity:1}
         
         axios.patch(`${baseUrl}user/1`,{
           cart:[...cartData,params.data]
@@ -90,4 +87,6 @@ function postdata(params={}){
 
 
 
-export  {getPageData,postdata} 
+
+
+export  {getPageData} 

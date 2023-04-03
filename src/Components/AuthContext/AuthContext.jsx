@@ -5,7 +5,7 @@ export const AuthConetextProvider = createContext()
 
 export default function AuthContext({children}){
 
-    let [searchdata,setSearchData] = useState({searchInput:'',isAuth:false,token:null})
+    let [searchdata,setSearchData] = useState({searchInput:'',isAuth:false,userId:null})
 
     function handlesetSearchfunction(e){
         console.log(e)
@@ -13,7 +13,7 @@ export default function AuthContext({children}){
     }
 
     return(
-    <AuthConetextProvider.Provider value={{handlesetSearchfunction,searchdata}}>
+    <AuthConetextProvider.Provider value={{handlesetSearchfunction,searchdata,setSearchData}}>
             {children}
         </AuthConetextProvider.Provider>
     )
