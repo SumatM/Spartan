@@ -1,8 +1,14 @@
-#SPARTAN
+
+# SPARTAN
+
+
+
 
 <p align="center">
  <img src="https://github.com/SumatM/marvelous-crack-5191/blob/main/src/Logo/logo-no-background.svg" width='30%'>
 </p>
+
+
 ## Description
 
 Spartan is a website dedicated to men's fashion, with a focus on formal wear. The website provides a platform for customers to create their own customized clothing, allowing them to tailor their clothing to fit their unique style and preferences.
@@ -12,6 +18,69 @@ Spartan offers high-quality products, made with the finest materials and crafted
 ### Quick Preview 
 
 ### Live Demo -
+<p align="center"> Landing Page</p>
+<p align="center">
+ <img style="margin-right: 10px" src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(504).png" width='70%'>
+</p>
+<p align="center">Footer Section</p>
+<p align="center">
+  <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(505).png" width='70%'>
+</p>
+
+<p align="center">Login Page</p>
+<p align="center">
+  <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(506).png" width='70%'>
+</p>
+
+<p align="center">Login Page</p>
+<p align="center">
+  <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(507).png" width='70%'>
+</p>
+
+<p align="center">Select Per item on Page</p>
+<p align="center">
+  <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(511).png" width='70%'>
+</p>
+
+<p align="center">Suit's Page</p>
+<p align="center">
+  <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(517).png" width='70%'>
+</p>
+
+<p align="center">Cart Page without LogIn</p>
+<p align="center">
+  <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(512).png" width='70%'>
+</p>
+
+<p align="center">Cart Page with LogIn</p>
+<p align="center">
+  <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(513).png" width='70%'>
+</p>
+
+<p align="center">Search Products and No Search Item Found</p>
+<p align="center">
+  <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(514).png" width='70%'>
+</p>
+
+<p align="center">Search Products</p>
+<p align="center">
+  <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(515).png" width='70%'>
+</p>
+
+<p align="center">Loading Data</p>
+<p align="center">
+  <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(516).png" width='70%'>
+</p>
+
+<p align="center">Suit's Page</p>
+<p align="center">
+  <img  src="https://github.com/SumatM/marvelous-crack-5191/blob/main/readmeImages/Screenshot%20(517).png" width='70%'>
+</p>
+
+
+
+
+
 
 
 
@@ -60,11 +129,16 @@ In the future, I plan to make 'SPARTAN' more accessible to mobile users by ensur
 
 ## Lessons Learned
 
-We are in our learning phase and this is my third clone, so faced multiple issues to build this site. These are some topic that challenges us to make this:-
+We are in our learning phase and this is my third clone, so faced multiple issues to build this site.
+
 -Carousel construction: Implemented a carousel on the homepage to enhance the visual appeal of the platform and make it more engaging for users.
+
 -Axios optimization: Optimized the use of Axios to improve the platform's overall performance and efficiency, resulting in a smoother user experience.
+
 -Time management: Practiced efficient time management techniques to ensure that project milestones were met on time and within budget.
+
 -Clean code importance: Recognized the importance of clean code and made it a priority throughout the project's development to enhance its readability, maintainability, and scalability.
+
 -DRY principle: Adhered to the DRY (Don't Repeat Yourself) principle, which emphasizes the importance of minimizing code repetition to improve the platform's overall quality and efficiency.
 
 ## Contributing
