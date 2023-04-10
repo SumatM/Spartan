@@ -112,8 +112,14 @@
 }
 
 
-@media screen and (max-width:720) {
+@media screen and (max-width:480px) {
 
+    .carbonNutral{
+        width: 60%;
+        margin: auto;
+        padding: 20px;
+        padding-bottom: 30px;
+    }
     
 }
 
