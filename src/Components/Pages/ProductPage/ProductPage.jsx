@@ -1,4 +1,4 @@
-import {Box,Heading, HStack, VStack,Text,Select,Flex,Grid,Checkbox,Stack,Input,CardFooter,Button, Center,IconButton,} from '@chakra-ui/react'
+import {Box,Heading, HStack, VStack,Text,Select,Flex,Grid,Checkbox,Stack,Input,CardFooter,Button, Center,IconButton, Spacer,} from '@chakra-ui/react'
 import {useState, useEffect, useReducer,useContext} from 'react'
 import pageinfo from './pageinfo';
 import Footer from './../../Footer';
@@ -185,37 +185,37 @@ let navigate = useNavigate()
 
 
     return(
-        <Box width='97%' m='auto' marginTop='75px'>
+        <Box width="97%" m='auto' marginTop={{base:'145px',sm:'150px',md:'95px'}}>
 
         {/* // current page info */}
 
-          <Box>
-           <HStack padding='10px 0'><Heading size='xs'>Home {<ChevronRightIcon/>} {section}</Heading></HStack>
+          <Box width={{base:"100%",sm:'100%',md:"100%"}}>
+           <HStack  padding='10px 0'><Heading size='xs'>Home {<ChevronRightIcon/>} {section}</Heading></HStack>
           {page=='product' ? null :   <Box>
-            <HStack>
-                <Box width='50%' letterSpacing='0.8px'>
-                    <Box  padding='35px' textAlign='start'>
+            <Flex justify='space-around' mt='15px' flexDirection={{base:'column',sm:'column',md:'column',lg:'row'}}>
+                <Box width={{base:'90%',sm:'90%' ,md:'90%',lg:'40%' } } m='auto' letterSpacing='0.8px'>
+                    <Box  padding='30px' textAlign='start'>
 
                         <Text fontSize='2xl' fontFamily="Commuter Sans,Verdana"  fontWeight='bold'> {pageinfo[page]?.heading}</Text>
 
                         <Text  pt='10px' fontSize='xs'>{pageinfo[page]?.body}</Text>
                     </Box>
                 </Box>
-                <Box width='50%' >
+                <Box width={{base:'90%',sm:'90%' ,md:'90%',lg:'40%' } } m='auto' mt='25px' >
                 <img width='100%'  src={pageinfo[page]?.topbanner} alt='' />
                 </Box>
-            </HStack>
+            </Flex>
             </Box>}
 
-            <Flex justify='end' alignItems='center' padding='9px' mt='25px'  borderTop='1px solid gray' borderBottom='1px solid gray'>
+            <Flex  justify='end' alignItems='center' padding='9px' mt='25px'  borderTop='1px solid gray' borderBottom='1px solid gray'>
             <Text marginRight='25px' fontSize='xs'>Showing 1 - {apidata.length}  of {totalitems}</Text>
-            <Select border='1px solid gray' marginRight='25px' w='9%' onChange={handleperpageitem} value={perpageitem}>
+            <Select border='1px solid gray' marginRight='25px'  w={{base:'18%',sm:'13%',md:'9%'}} onChange={handleperpageitem} value={perpageitem}>
                 <option value='20'>20</option>
                 <option value='10'>10</option>
                 <option value='30'>30</option>
                 <option value='40'>40</option>
                 </Select>
-                <Select w='25%' border='1px solid gray' placeholder='SORT BY' fontSize='13px' onChange={handlesorting} value={order}>
+                <Select  w={{base:'27%',sm:'30%',md:'25%'}} border='1px solid gray' placeholder='SORT BY' fontSize='13px' onChange={handlesorting} value={order}>
                 <option value='recommended'>RECOMMENDED</option>
                 <option value='desc'>PRICE (HIGHT TO LOW)</option>
                 <option value='asc'>PRICE (LOW TO HIGH)</option>
@@ -230,8 +230,8 @@ let navigate = useNavigate()
 
         {/* left side coloum for filter */}
 
-           <Box  width='17%'>
-            <Box>
+           <Box width='17%' display={{base:'none',sm:"none",md:'block'}}>
+            <Box >
                 <Box textAlign='start'>
                 {/* {console.log(Object.keys(filterdiv[0]))} */}
                 {filterdiv.map((elem,ind)=>{
@@ -251,7 +251,7 @@ let navigate = useNavigate()
                 </Box>
             </Box> 
            </Box>
-           <Box  width='84%' padding='25px'>
+           <Box  width={{base:"100%",sm:'100%',md:"100%"}} padding='25px'>
            {loading ? <Loading/> : (page=='product' && apidata.length==0) ? 
            <Box mt='30px' mb='100px'>
             <Text letterSpacing='1px' fontSize='2xl'>
@@ -262,7 +262,7 @@ let navigate = useNavigate()
                 <IconButton onClick={handleSearchButton} m="0" bg="#EBEDF3" aria-label='Search database' marginTop="-5px" borderRadius="0 5px 5px 0" icon={<SearchIcon />} />
                 </Box>
            </Box> :
-            <Grid templateColumns='repeat(4, 1fr)' gap={4}>
+            <Grid templateColumns={{base:'repeat(1, 1fr)',sm:'repeat(2, 1fr)',md:'repeat(4, 1fr)'}} gap={4}>
                 {apidata.map((item)=>{
                     return (<Cards key={item.id} {...item}/>)
                 })}

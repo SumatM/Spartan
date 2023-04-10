@@ -17,7 +17,7 @@ export default function Home(){
 
 
     return(
-        <Box marginTop='175px'>
+        <Box marginTop='95px'>
  {/* ------------video Components------------ */}
         <Box>
         <Video/>
@@ -144,7 +144,7 @@ export default function Home(){
         </Box>
   {/* ------------8th carbon netral ------------ */}
 
-      <Flex mt='30px' bg="#F5F5F5">
+      <Flex mt='30px' bg="#F5F5F5" flexDirection={{base:'column',sm:'row',md:"row"}} justify={{base:null,sm:'center',md:'center'}}>
         <Flex className={styles.carbonNutral}>
         <VStack>
         <img width='20%' src="https://www.planetmark.com/wp-content/uploads/2021/06/Planet_Mark_Logo.png"/>
@@ -177,12 +177,12 @@ export default function Home(){
 
   {/* ------------9th personal appoint ------------ */}
 
-      <Flex bg="#F5F5F5" mt='50px' id={styles.personal} >
-      <Box width='50%' padding='50px'>
+      <Flex bg="#F5F5F5"  mt='50px' id={styles.personal} flexDirection={{base:'column',sm:'column',md:"row"}}>
+      <Box width={{base:'100%',sm:'100%',md:'50%'}} padding='50px'>
         <img src="https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dw4b7530c7/merchAssets/SS22/Homepage/wide-banner/hp6-store-desktop.jpg" />
       </Box>
-      <Flex width='50%' alignItems='center' padding='50px'>
-      <VStack width='70%' margin='auto'>
+      <Flex  width={{base:'100%',sm:'100%',md:'50%'}} alignItems='center' padding='50px'>
+      <VStack mb='25px' margin='auto'>
         <Heading size='md'>Explore our stores with an
           experience catered to you</Heading>
           <Button width='100%' borderRadius='0px' bg='black' color='white' padding='15px' margin='15px' boxShadow= "rgba(0, 0, 0, 0.35) 0px 5px 15px" _hover={{ bg: '#311B92'  }} >PERSONAL APPOINTMENTS</Button>
