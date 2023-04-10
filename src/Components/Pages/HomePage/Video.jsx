@@ -11,17 +11,17 @@ function Video(){
         </video>
         <Center>
         <Box id={styles.textOverVideo}>
-          <Heading color="white" size="2xl"> We're Hitting the Refresh Button</Heading>
-         <Box id={styles.textOverVideoBox2}> <Heading size='lg'>4 SHIRTS OR POLOS FOR $239</Heading>
-          <Heading size='lg'>SAVE UP TO $235</Heading></Box>
+          <Heading color="white" size={{bas:'md',sm:'xl',md:'xl',lg:"2xl"}}> We're Hitting the Refresh Button</Heading>
+         <Box id={styles.textOverVideoBox2}> <Heading size={{base:'xs',sm:'sm',md:'md',lg:"xl"}}>4 SHIRTS OR POLOS FOR $239</Heading>
+          <Heading size={{base:'xs',sm:'sm',md:'md',lg:"xl"}}>SAVE UP TO $235</Heading></Box>
         </Box>
-        <Box  id={styles.textOverButtons}>
+        <Box  id={styles.textOverButtons} display={{base:'block',md:"block",lg:'block'}}>
         <Button>SHOP NEW SEASON</Button>
         <Button>SHOP SHIRTS</Button>
         </Box>
         </Center>
         <Box>
-          <Button id={styles.textOverButton}> New Season</Button>
+          <Button display={{base:'none',sm:'none',md:'block',lg:'block'}} id={styles.textOverButton}> New Season</Button>
         </Box>
         </Box>
     )

@@ -66,7 +66,7 @@ let navigate = useNavigate()
         if(page!=='product'&& searchInput!==''){
             handlesetSearchfunction('')
         }
-        document.title = `Spartan ${section}'s Store`
+        document.title = `Men's ${section} | Spartan`
 
     },[page])
 
