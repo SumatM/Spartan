@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext, useRef, useState } from "react";
 import { AuthConetextProvider } from "../AuthContext/AuthContext";
 import axios from "axios";
+import { useEffect } from "react";
 
 export default function LogIn(){
 
@@ -55,6 +56,12 @@ export default function LogIn(){
     console.log(searchdata);
 
 }
+
+
+useEffect(()=>{
+  document.title = "My Spartan Account Login "
+},[])
+
 
 
 

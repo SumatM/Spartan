@@ -3,14 +3,21 @@ import Video from "./Video"
 import styles from './../../Styles/Home.module.css'
 import CarouselSlider from "./CarouselSlider"
 import Footer from "../../Footer"
+import { useEffect } from "react"
 
 export default function Home(){
 
   let images = ['https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dw3afa10eb/merchAssets/SS23/Homepage/hero-carousel/hc-025.jpg','https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dw1c66575d/merchAssets/SS23/Homepage/hero-carousel/hc-039.jpg','https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dw547fa107/merchAssets/SS23/Homepage/hero-carousel/hc-030.jpg','https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dwda90996e/merchAssets/SS23/Homepage/hero-carousel/hc-038.jpg','https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dw6ab5c75a/merchAssets/SS23/Homepage/hero-carousel/hc-037.jpg','https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dw96f37b5f/merchAssets/SS23/Homepage/hero-carousel/hc-027.jpg',]
  
 
+  useEffect(()=>{
+    document.title = " Home  : Spartan Men's Clothing & Formal Wear "
+  },[])
+
+
+
     return(
-        <Box marginTop='75px'>
+        <Box marginTop='175px'>
  {/* ------------video Components------------ */}
         <Box>
         <Video/>
@@ -106,7 +113,7 @@ export default function Home(){
         </Box>
       </Flex>
       <Flex>
-        <Box className={styles.rating}>
+        <Box className={styles.rating} display={{base:'none',lg:'block'}}>
           <Text>⭐⭐⭐⭐⭐</Text>
           <Heading size="sm">"Good Shirts"</Heading>
           <Text>Good products, excellent service. Twice I had problems with delivery, both times their Customer Serv...</Text>

@@ -5,7 +5,7 @@ import {GiSafetyPin} from 'react-icons/gi'
 import Footer from './../Footer'
 import {CheckIcon} from '@chakra-ui/icons'
 import { Link, useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 export default function SignUp(){
@@ -64,6 +64,10 @@ export default function SignUp(){
 
      })
     }
+
+    useEffect(()=>{
+      document.title = "My Spartan Account Sign Up "
+    },[])
 
     
 

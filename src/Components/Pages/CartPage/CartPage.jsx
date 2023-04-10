@@ -4,6 +4,7 @@ import {getPageData} from './../../../axios'
 import axios from "axios";
 import CartCard from "./CartCards";
 import { AuthConetextProvider } from "../../AuthContext/AuthContext";
+import { cleanup } from "@testing-library/react";
 
 
 function CartPage(){
@@ -15,12 +16,14 @@ function CartPage(){
     console.log(searchdata);
 
     useEffect(()=>{
-        document.title = 'Cart'
+        document.title = 'My Spartan Cart Store'
         axios( `https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`)
         .then((res)=>{
             //console.log(res.data.cart)
             setCart(res.data.cart);
         })
+
+    
     },[])
 
     

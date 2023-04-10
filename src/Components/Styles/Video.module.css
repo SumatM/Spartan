@@ -66,4 +66,12 @@
         font-size: 15px;
         bottom: 10%;
     }
+    #textOverVideoBox2{
+        margin-top: 5px;
+        font-size: 5px;
+        color: yellow;
+    }
+    #textOverVideo{
+        bottom: 0px;
+    }
 }
