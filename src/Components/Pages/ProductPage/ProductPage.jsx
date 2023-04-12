@@ -252,7 +252,7 @@ let navigate = useNavigate()
             </Box> 
            </Box>
            <Box  width={{base:"100%",sm:'100%',md:"100%"}} padding='25px'>
-           {loading ? <Loading/> : (page=='product' && apidata.length==0) ? 
+           {loading ? <Loading perpageitem={perpageitem}/> : (page=='product' && apidata.length==0) ? 
            <Box mt='30px' mb='100px'>
             <Text letterSpacing='1px' fontSize='2xl'>
             Sorry, we couldn't find any results matching <Heading size='lg' display='inline'>"{searchInput}"</Heading>
@@ -262,7 +262,7 @@ let navigate = useNavigate()
                 <IconButton onClick={handleSearchButton} m="0" bg="#EBEDF3" aria-label='Search database' marginTop="-5px" borderRadius="0 5px 5px 0" icon={<SearchIcon />} />
                 </Box>
            </Box> :
-            <Grid templateColumns={{base:'repeat(1, 1fr)',sm:'repeat(2, 1fr)',md:'repeat(4, 1fr)'}} gap={4}>
+            <Grid templateColumns={{base:'repeat(1, 1fr)',sm:'repeat(2, 1fr)',md:'repeat(3, 1fr)',lg:'repeat(4, 1fr)'}} gap={4}>
                 {apidata.map((item)=>{
                     return (<Cards key={item.id} {...item}/>)
                 })}
