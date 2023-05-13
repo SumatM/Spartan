@@ -3,9 +3,9 @@ import axios from "axios";
 
 let OfflineUrl = 'http://localhost:8080/'
 
-// let baseUrl = 'https://men-clothing-mock-api-sumat.onrender.com/'
+ let baseUrl = 'https://men-clothing-mock-api-sumat.onrender.com/'
 
-let baseUrl = OfflineUrl
+// let baseUrl = OfflineUrl
 
     console.log(baseUrl);
 
