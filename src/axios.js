@@ -3,17 +3,15 @@ import axios from "axios";
 
 let OfflineUrl = 'http://localhost:8080/'
 
-let baseUrl = 'https://men-clothing-mock-api-sumat.onrender.co/'
+// let baseUrl = 'https://men-clothing-mock-api-sumat.onrender.com/'
 
-    //baseUrl = OfflineUrl
+let baseUrl = OfflineUrl
 
     console.log(baseUrl);
 
-function getPageData(params={}){
+function getPageData(params){
 
-
-
-    //console.log(params);
+    console.log(params.pageType,params.colors,params);
     
     if(params.pageType=='product' && params.order==''){
         //console.log(params.q);
@@ -34,6 +32,7 @@ function getPageData(params={}){
                 _sort: params.sort,
                 _order: params.order,
                 q:params.q,
+                
             }
            })
     }
@@ -42,6 +41,7 @@ function getPageData(params={}){
     params :{
         _page:params.page,
         _limit:params.limit,
+        colors:params.colors
     }
    })
 }

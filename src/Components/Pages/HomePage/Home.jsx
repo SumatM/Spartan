@@ -1,4 +1,4 @@
-import { Heading,Box, Button, Center,Flex,Text, VStack } from "@chakra-ui/react"
+import { Heading,Box, Button, Center,Flex,Text, VStack, Grid } from "@chakra-ui/react"
 import Video from "./Video"
 import styles from './../../Styles/Home.module.css'
 import CarouselSlider from "./CarouselSlider"
@@ -46,8 +46,8 @@ export default function Home(){
   
   {/* ------------4rd part ------------ */}
 
-        <Flex width="100%" mb='100px' justify='space-between' marginBottom="30px">
-          <Box width='48%'>
+        <Grid width="100%" mb='100px'  marginBottom="30px" templateColumns={{base:'repeat(1, 1fr)',sm:'repeat(1, 1fr)',md:"repeat(2, 1fr)"}} gap="15px">
+          <Box >
           <img  height='100%' src='https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dw457fbf0b/merchAssets/SS23/Homepage/wide-banner/hp1-editorial-ny-yets.jpg'/>
           <VStack className={styles.box3part2Vstack}>
           <Heading size='md'>New York Jets Offical Partner</Heading>
@@ -55,7 +55,7 @@ export default function Home(){
           <Button id={styles.box3part2Vstack_Button}>LEARN MORE</Button>
           </VStack>
           </Box>
-          <Box width='48%'>
+          <Box>
           <img  src="https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dw63cc6f39/merchAssets/SS23/Homepage/wide-banner/hp1-editorial-icons.jpg" />
           <VStack className={styles.box3part2Vstack}>
           <Heading size='md'>Tyrwhitt Icons</Heading>
@@ -63,12 +63,12 @@ export default function Home(){
           <Button id={styles.box3part2Vstack_Button}>SHOP NOW</Button>
           </VStack>
           </Box>
-        </Flex>
+        </Grid>
 
   {/* ------------5rd part ------------ */}
 
-        <Flex width="100%" mb='100px' justify='space-between' marginBottom="30px">
-          <Box width='48%'>
+        <Grid width="100%" mb='100px' templateColumns={{base:'repeat(1, 1fr)',sm:'repeat(1, 1fr)',md:"repeat(2, 1fr)"}} marginBottom="30px" gap="15px">
+          <Box>
           <img  height='100%' src='https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dw405e0d53/merchAssets/SS23/Homepage/wide-banner/hp6-spring-desktop.jpg'/>
           <VStack className={styles.box3part2Vstack}>
           <Heading size='md'>Seasonal Looks</Heading>
@@ -77,7 +77,7 @@ export default function Home(){
           <Button id={styles.box3part2Vstack_Button}>SHOP NOW</Button>
           </VStack>
           </Box>
-          <Box width='48%'>
+          <Box >
           <img  src="https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dwaaf522b0/merchAssets/SS23/Homepage/wide-banner/hp1-editorial-04-desktop.jpg" />
           <VStack className={styles.box3part2Vstack}>
           <Heading size='md'>Tyrwhitt Icons</Heading>
@@ -85,7 +85,7 @@ export default function Home(){
           <Button id={styles.box3part2Vstack_Button}>EXPLORE MORE</Button>
           </VStack>
           </Box>
-        </Flex>
+        </Grid>
 
   {/* ------------6rd part rateing ------------ */}
 
@@ -95,7 +95,7 @@ export default function Home(){
           <span>Average Customer Rating: ⭐⭐⭐⭐⭐ <Heading display='inline' size="md">4.7</Heading>/5</span>
         </Center>
       </Box>
-      <Flex justify='space-between' width="100%">
+      <Grid templateColumns={{base:'repeat(1, 1fr)',sm:'repeat(1, 1fr)',md:"repeat(2, 1fr)"}} gap="15px" width="100%">
       <Flex>
         <Box className={styles.rating}>
           <Text>⭐⭐⭐⭐⭐</Text>
@@ -120,7 +120,7 @@ export default function Home(){
           <Text as="i" fontSize='xs'>Trusted Customer Wednesday,29 March 2023</Text>
         </Box>
       </Flex>
-      </Flex>
+      </Grid>
 
       </Box>
 
@@ -144,7 +144,7 @@ export default function Home(){
         </Box>
   {/* ------------8th carbon netral ------------ */}
 
-      <Flex mt='30px' bg="#F5F5F5" flexDirection={{base:'column',sm:'row',md:"row"}} justify={{base:null,sm:'center',md:'center'}}>
+      <Grid mt='30px' bg="#F5F5F5"  templateColumns={{base:'repeat(1, 1fr)',sm:'repeat(2, 1fr)',md:"repeat(4, 1fr)"}} >
         <Flex className={styles.carbonNutral}>
         <VStack>
         <img width='20%' src="https://www.planetmark.com/wp-content/uploads/2021/06/Planet_Mark_Logo.png"/>
@@ -173,7 +173,7 @@ export default function Home(){
         <Text fontSize='xs'>We are proud to be Carbon Neutral with Planet Mark</Text>
         </VStack>
         </Flex>
-      </Flex>
+      </Grid>
 
   {/* ------------9th personal appoint ------------ */}
 

@@ -5,8 +5,15 @@ import {MdAddShoppingCart} from 'react-icons/md';
 import { useState,useEffect, useContext } from "react";
 import axios from "axios";
 import { AuthConetextProvider } from "../../AuthContext/AuthContext";
+import { useNavigate, useParams } from "react-router-dom";
 
-function Cards( {id,img,color,varient1,varient2,varient3,title,price,discount,category}){
+function Cards( {id,img,color,varient1,varient2,varient3,title,price,discount,category,page}){
+
+    const navigate = useNavigate();
+
+    const parms = useParams();
+
+    console.log(parms);
 
     let data = {id,img,color,varient1,varient2,varient3,title,price,discount,category}
     //console.log(data)
@@ -44,11 +51,14 @@ function Cards( {id,img,color,varient1,varient2,varient3,title,price,discount,ca
           //alert("Item added in Cart!")
     },[axiosCartdata])
 
+    function handleProductClick(){
+        navigate(`/${page}/${id}`)
+    }
     
 
 
     return (
-        <Box>
+        <Box onClick={handleProductClick}>
             <Box position='relative'  p='10px' textAlign='start'>
             <img width='100%' src={img} alt={`${title}`} />
             <Text h='35px' mt='10px' letterSpacing='0.7px'  fontSize='sm'>{title.substring(0,45)+"..."}</Text>

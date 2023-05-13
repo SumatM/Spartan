@@ -4,6 +4,8 @@ import ProductPage from "../Pages/ProductPage/ProductPage";
 import LogIn from "../Pages/LogIn";
 import SignUp from "../Pages/SignUp";
 import CartPage from "../Pages/CartPage/CartPage";
+import SingleProductPage from "../Pages/SingleProductPage/SingleProductPage";
+
 
 function AllRoutes(){
 
@@ -15,6 +17,7 @@ function AllRoutes(){
             <Route path="/pant" element={<ProductPage page={'pant'}/>}></Route>
             <Route path="/shoe" element={<ProductPage page={'shoe'}/>}></Route>
             <Route path="/search" element={<ProductPage page={'product'}/>}></Route>
+            <Route path="/:product/:id" element={<SingleProductPage/>}></Route>
             <Route path="/login" element={<LogIn/>}></Route>
             <Route path="/signup" element={<SignUp/>}></Route>
             <Route path="/cart" element={<CartPage/>}></Route>
