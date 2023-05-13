@@ -58,10 +58,10 @@ function Cards( {id,img,color,varient1,varient2,varient3,title,price,discount,ca
 
 
     return (
-        <Box onClick={handleProductClick}>
+        <Box>
             <Box position='relative'  p='10px' textAlign='start'>
             <img width='100%' src={img} alt={`${title}`} />
-            <Text h='35px' mt='10px' letterSpacing='0.7px'  fontSize='sm'>{title.substring(0,45)+"..."}</Text>
+            <Text h='35px' mt='10px' letterSpacing='0.7px'  onClick={handleProductClick}  cursor="pointer" fontSize='sm'>{title.substring(0,45)+"..."}</Text>
             <Heading h='35px' mt='15px' size='xs'>{'$'+price}</Heading>
             <Flex > 
             {discount ? <Text mt='-10px' fontSize='sm'>{"$"+discount +' MULTIBUY'}</Text> : <Text mt='-10px' fontSize='sm'>{"$"+price +' MULTIBUY'}</Text>} 
