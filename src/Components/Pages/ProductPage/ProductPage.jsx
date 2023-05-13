@@ -10,7 +10,7 @@ import {ArrowBackIcon,ArrowForwardIcon,ChevronRightIcon,SearchIcon} from '@chakr
 import reducerfun from './reducer.js'
 import {intialstate} from './reducer.js'
 import {AuthConetextProvider} from './../../AuthContext/AuthContext'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useSearchParams} from 'react-router-dom';
 
 
 
@@ -50,6 +50,11 @@ let navigate = useNavigate()
 
 //-------------------------------------------------------------------  
 
+const [searchParm,setSearchParam] = useSearchParams();
+
+
+//-------------------------------------------------------------------
+
     for (let i=0; i<page.length; i++){
        if(i!==0){
         section+=page[i]
@@ -79,13 +84,47 @@ let navigate = useNavigate()
     },[searchInput])
 
 
+        // handle filter 
+
+        let initalColor = searchParm.getAll('color')
+
+
+        const [colors,setcolor] = useState( initalColor ||  [])
+    
+    
+        
+    
+        function handlecheckbox(val,type,catageory){
+          // console.log(val,type,catageory)
+           type = type.toLowerCase()
+           
+           if(catageory=='COLOR'){
+             if(colors.includes(type)){
+                let filter = colors.filter((item)=> item!==type)
+                setcolor(filter)
+             }else{
+                setcolor([...colors,type])
+             }
+           }
+    
+        }
+
+        useEffect(()=>{
+           
+            setSearchParam({
+                colors
+            })
+        },[colors])
+        
+
+
 // receiving promise from axios 
 
 
     useEffect(()=>{
     dispatch({type:'loading',payload:true})
     if(flag!==page){
-        console.log(flag,page);
+        //console.log(flag,page);
        // dispatch({type:"currPage",payload:1})
         //dispatch({type:"perpageitem",payload:20})
         dispatch({type:'reset'})
@@ -96,13 +135,13 @@ let navigate = useNavigate()
       page:currPage,
       limit:perpageitem,
       pageType:page,
-      sort:'price',
-      order:order,
+       sort:'price',
+     order:order,
       q:searchInput,
-
+      colors
       })
     .then((res)=>{
-
+        console.log(res.data);
         let totalpagesrecieved = (res.headers.get('X-total-Count'))
         setApidata(res.data)
         globaData = res.data
@@ -117,7 +156,7 @@ let navigate = useNavigate()
      })
      
      
-    },[page,perpageitem,currPage,order,searchInput])
+    },[page,perpageitem,currPage,order,searchInput,colors])
 
     // handleperpage item 
 
@@ -138,31 +177,12 @@ let navigate = useNavigate()
          dispatch({type:'pagemovement',payload:val})
     }
 
-    // handle filter 
 
-    function handlecheckbox(val,item,catageory){
-       //console.log(val,item,catageory)
-        if(val){
-            dispatch({type:'filteradd',payload:item})
-        }else{
-            dispatch({type:'filterremove',payload:item})
-        }
-       // console.log(maindata.filter[0])
-       // console.log(globaData);
 
-       if(maindata.filter.length==0){
-         maindata.filter.push('a')
-        // console.log(maindata.filter)
-       }
 
-        let filterdata = globaData.filter((ele)=>{
-            //console.log(ele.title.includes("Iron"));
-           // console.log(maindata.filter.includes(('BLUE 345 gdfg').split(' ')))
-              return(maindata.filter.includes(ele.title.toUpperCase()))
-            //    (ele.title.toUpperCase()).includes(maindata.filter[0].toUpperCase())
-        })
-        //console.log(filterdata)
-    }
+   
+
+    
 
     // handle sorting;
    
@@ -264,7 +284,7 @@ let navigate = useNavigate()
            </Box> :
             <Grid templateColumns={{base:'repeat(1, 1fr)',sm:'repeat(2, 1fr)',md:'repeat(3, 1fr)',lg:'repeat(4, 1fr)'}} gap={4}>
                 {apidata.map((item)=>{
-                    return (<Cards key={item.id} {...item}/>)
+                    return (<Cards key={item.id} {...item} page={page}/>)
                 })}
             </Grid>}
            </Box>

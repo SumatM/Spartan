@@ -7,6 +7,7 @@ import { AuthConetextProvider } from "../../AuthContext/AuthContext";
 import { cleanup } from "@testing-library/react";
 
 
+
 function CartPage(){
 
     const [cart,setCart] = useState([])
@@ -36,6 +37,7 @@ function CartPage(){
 
             <Flex p='4' w='15%' textAlign='start'>
             <Box width='40%' >
+            
             <img width='100%' src='https://cdn-icons-png.flaticon.com/512/2592/2592592.png' alt=''/>
           </Box>
             <Box>
