@@ -1,4 +1,4 @@
-import { Button, FormControl, FormLabel, Input, Stack,Box, Heading,Flex ,Text,Modal,ModalOverlay, ModalContent,ModalHeader,ModalCloseButton,ModalBody,ModalFooter,useDisclosure,Lorem} from "@chakra-ui/react";
+import { Button, FormControl, FormLabel, Input, Stack,Box, Heading,Flex ,Text,Modal,ModalOverlay, ModalContent,ModalHeader,ModalCloseButton,ModalBody,ModalFooter,useDisclosure,Lorem, Grid} from "@chakra-ui/react";
 import {FaRegClipboard} from 'react-icons/fa'
 import {BsEnvelopeOpen} from 'react-icons/bs'
 import {GiSafetyPin} from 'react-icons/gi'
@@ -36,7 +36,7 @@ export default function LogIn(){
   function handleLoginButton(e){
     e.preventDefault();
     onOpen()
-    axios(`http://localhost:8080/user/?q=${loginInput.email}`)
+    axios(`https://men-clothing-mock-api-sumat.onrender.com/user/?q=${loginInput.email}`)
     .then((res)=>{
       console.log(res.data);
 
@@ -46,9 +46,9 @@ export default function LogIn(){
             console.log(item.id)
             setSearchData({...searchdata,isAuth:true,userId:item.id})
             onOpen()
-            // setTimeout(() => {
-            //   navigate('/')
-            // }, 1000);
+            setTimeout(() => {
+              navigate('/')
+            }, 1000);
            }
       })
     })
@@ -66,8 +66,8 @@ useEffect(()=>{
 
 
     return (
-        <Box mt='85px'> 
-        <Flex>
+        <Box mt={{base:"130px",sm:"140px",md:"95px"}}> 
+        <Grid gridTemplateColumns={{base:"repeat(1,1fr)",sm:"repeat(1,1fr)",md:"repeat(2,1fr)"}} >
         <Modal isOpen={isOpen} onClose={onClose} >
         <ModalOverlay />
         <ModalContent  borderRadius='0px'>
@@ -85,7 +85,7 @@ useEffect(()=>{
           </ModalFooter>
         </ModalContent>
       </Modal>
-        <Box w='50%'>
+        <Box >
         <Box w='70%' m='auto' textAlign='start'  >
             <Heading size='lg' p='20px' letterSpacing='1px'>My Account</Heading>
         <form >
@@ -112,7 +112,7 @@ useEffect(()=>{
             </Box>
         </Box>
         {/* -----------2nd box for signup----------- */}
-        <Box w='50%' h='400px'>
+        <Box h='400px' >
         <Box w='70%' m='auto' textAlign='start'  >
             <Heading size='lg' p='20px' letterSpacing='1px'>New Customers</Heading>
           <Stack spacing={3} width='90%' p='10px' mt='20px'>
@@ -141,7 +141,7 @@ useEffect(()=>{
           </Stack>
         </Box>
         </Box>
-        </Flex>
+        </Grid>
 
             {/* -------------footer part----------- */}
             <Footer/>

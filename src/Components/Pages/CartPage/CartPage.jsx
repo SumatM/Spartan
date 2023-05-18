@@ -1,4 +1,4 @@
-import { Box, Flex, Heading,Text ,Button} from "@chakra-ui/react";
+import { Box, Flex, Heading,Text ,Button, Grid} from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
 import {getPageData} from './../../../axios'
 import axios from "axios";
@@ -30,17 +30,17 @@ function CartPage(){
     
 
     return(
-        <Box width='97%' m='auto' marginTop='95px'>
+        <Box width='97%' m='auto' marginTop={{base:"130px",sm:"140px",md:"95px"}}>
             <Flex mt='15px' justify='space-between' p='10px' >
 
             <Heading size='xl' fontWeight='light' letterSpacing='2px' fontFamily='sans-serif' mt='20px'>BAG</Heading>
 
-            <Flex p='4' w='15%' textAlign='start'>
+            <Flex p='4' w='15%' textAlign='start' display={{base:'none',sm:"none",md:"block"}}>
             <Box width='40%' >
             
             <img width='100%' src='https://cdn-icons-png.flaticon.com/512/2592/2592592.png' alt=''/>
           </Box>
-            <Box>
+            <Box >
             <Heading fontSize='7px' letterSpacing='1.5px'>Shopping is secure
                 with SPARTAN.</Heading>
             </Box>
@@ -51,8 +51,8 @@ function CartPage(){
                 <Box>
                 <Text size='lg'>There are no items in your bag</Text>
                 </Box>
-            </Box> : <Flex  width='97%' m='auto' marginTop='75px'>
-                <Box w='70%' textAlign='start'>
+            </Box> : <Grid  width='97%' m='auto' marginTop='75px' gridTemplateColumns={{base:"repeat(1,1fr)",sm:"repeat(1,1fr)",md:"repeat(1,1fr)",lg:'repeat(2,1fr)'}}>
+                <Box  textAlign='start'>
                 <Box>
                 <Heading size='md'fontWeight='light' letterSpacing='1px'>YOUR ITEMS{}</Heading>
                 </Box>
@@ -62,7 +62,7 @@ function CartPage(){
                     })}
                 </Box>
                 </Box>
-                <Box w='35%' padding='30px' pt='0' textAlign='start'>
+                <Box padding='30px' pt='0' textAlign='start'>
                     <Flex>
                        <Box bg='#F5F5F5' w='100%' p='20px'pt='0'>
                         <Box p='10px 0' borderBottom='1px solid gray'>
@@ -100,7 +100,7 @@ function CartPage(){
                     </Flex>
 
                 </Box>
-            </Flex>
+            </Grid>
             }
         </Box>
     )

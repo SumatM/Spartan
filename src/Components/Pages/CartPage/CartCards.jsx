@@ -1,4 +1,4 @@
-import { Heading,Box, Flex, Spacer,Text } from "@chakra-ui/layout";
+import { Heading,Box, Flex, Spacer,Text ,Grid} from "@chakra-ui/layout";
 import {Button, Select} from '@chakra-ui/react'
 import {CloseIcon} from '@chakra-ui/icons'
 import { useEffect, useState } from "react";
@@ -80,13 +80,13 @@ function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,
                 <CloseIcon/>
             </Box>
         </Flex>
-        {/* 2nd box */}
-        <Flex >
-            <Box w='40%'>
-            <img src={img} width='60%'/>
+        {/* 1st box */}
+        <Grid gridTemplateColumns={{base:"repeat(1,1fr)",sm:"repeat(1,1fr)",md:"repeat(1,1fr)",lg:'repeat(2,1fr)'}}>
+            <Box m='auto'>
+            <img src={img} width='80%'/>
             </Box>
             {/* 2nd part */}
-            <Box w='60%'  mt='30px' pb='20px' borderBottom='1px solid gray'>
+            <Box mt='30px' pb='20px' borderBottom='1px solid gray'>
                 <Flex>
                     <Box>
                         <Text fontSize='12px'>Classic,   15.5 collar size (inch), <br/>  34 sleeve length (inch),   Button cuff</Text>
@@ -114,7 +114,7 @@ function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,
                 <Button  mt='15px' bg='#C7CFDB' border='none' borderRadius='0px'><Text fontSize='xs' >Last sold 3 minutes ago</Text></Button>
                 </Box>
             </Box>
-        </Flex>
+        </Grid>
         <Flex justify='end'>
         <Box w='60%' mt='20px' >
                 <Flex justify={"space-between"}>
