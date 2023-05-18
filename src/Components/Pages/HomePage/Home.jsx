@@ -95,7 +95,7 @@ export default function Home(){
           <span>Average Customer Rating: ⭐⭐⭐⭐⭐ <Heading display='inline' size="md">4.7</Heading>/5</span>
         </Center>
       </Box>
-      <Grid templateColumns={{base:'repeat(1, 1fr)',sm:'repeat(1, 1fr)',md:"repeat(2, 1fr)"}} gap="15px" width="100%">
+      <Grid templateColumns={{base:'repeat(1, 1fr)',sm:'repeat(1, 1fr)',md:"repeat(2, 1fr)",lg:"repeat(3, 1fr)"}} gap="15px" width="100%">
       <Flex>
         <Box className={styles.rating}>
           <Text>⭐⭐⭐⭐⭐</Text>

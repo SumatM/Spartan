@@ -1,4 +1,4 @@
-import { Button, FormControl, FormLabel, Input, Stack,Box, Heading,Flex ,Text, Select, Checkbox, HStack, VStack,Alert,AlertIcon} from "@chakra-ui/react";
+import { Button, FormControl, FormLabel, Input, Stack,Box, Heading,Flex ,Text, Select, Checkbox, HStack, VStack,Alert,AlertIcon, Grid} from "@chakra-ui/react";
 import {FaRegClipboard} from 'react-icons/fa'
 import {BsEnvelopeOpen} from 'react-icons/bs'
 import {GiSafetyPin} from 'react-icons/gi'
@@ -53,7 +53,7 @@ export default function SignUp(){
 
      let postdata = {name:`${formdata.title} ${formdata.fname} ${formdata.lname}`,mobile:formdata.mobile,email:formdata.email,password:formdata.password,cart:[],address:[]}
 
-     axios.post('http://localhost:8080/user',{
+     axios.post('https://men-clothing-mock-api-sumat.onrender.com/user',{
       name:`${formdata.title} ${formdata.fname} ${formdata.lname}`,mobile:formdata.mobile,email:formdata.email,password:formdata.password,cart:[],address:[]
      })
      .then((res)=>{
@@ -73,9 +73,10 @@ export default function SignUp(){
 
 
     return (
-        <Box mt='85px'> 
-        <Flex>
-        <Box w='60%' >
+        <Box mt={{base:"130px",sm:"140px",md:"95px"}}> 
+        <Grid gridTemplateColumns={{base:"repeat(1,1fr)",sm:"repeat(1,1fr)",md:"repeat(2,1fr)"}}>
+
+        <Box >
         <Box w='80%' m='auto' textAlign='start'  >
             <Heading size='lg' p='20px' letterSpacing='1px'>Create Account</Heading> 
         <form >
@@ -151,8 +152,9 @@ export default function SignUp(){
             </Box>
         </Box>
         {/* -----------2nd box for LOGIN----------- */}
-        <Box w='50%' h='400px' letterSpacing='1.2px' fontFamily='Commuter Sans' mt='10%'>
-        <Box w='70%' textAlign='start' >
+        <Box>
+        <Box   letterSpacing='1.2px' fontFamily='Commuter Sans' mt='10%' m='auto'>
+        <Box w='60%' textAlign='start' margin='auto'>
           <Stack spacing={3} width='90%' p='10px' mt='20px'>
           <Flex border='0.5px solid gray' p='4' bg='#EBEDF3'>
           <Box width='30%'>
@@ -185,7 +187,8 @@ export default function SignUp(){
         
         
         </Box>
-        </Flex>
+        </Box>
+        </Grid>
 
             {/* -------------footer part----------- */}
             <Footer/>
