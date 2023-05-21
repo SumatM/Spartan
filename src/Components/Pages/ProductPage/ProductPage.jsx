@@ -13,13 +13,7 @@ import {AuthConetextProvider} from './../../AuthContext/AuthContext'
 import { useNavigate,useSearchParams} from 'react-router-dom';
 
 
-
 let globaData = [];
-
-
-     
-
-
 
 export default function ProductPage({page}){
 
@@ -106,7 +100,6 @@ const [searchParm,setSearchParam] = useSearchParams();
                 setcolor([...colors,type])
              }
            }
-    
         }
 
         useEffect(()=>{
@@ -205,7 +198,7 @@ const [searchParm,setSearchParam] = useSearchParams();
 
 
     return(
-        <Box width="97%" m='auto' marginTop={{base:'145px',sm:'150px',md:'95px'}}>
+        <Box width="97%" m='auto' marginTop={{base:'145px',sm:'150px',md:'20px'}}>
 
         {/* // current page info */}
 

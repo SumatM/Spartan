@@ -17,7 +17,7 @@ export default function Home(){
 
 
     return(
-        <Box marginTop='95px'>
+        <Box marginTop='5px'>
  {/* ------------video Components------------ */}
         <Box>
         <Video/>

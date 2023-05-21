@@ -5,7 +5,7 @@ import {MdAddShoppingCart} from 'react-icons/md';
 import { useState,useEffect, useContext } from "react";
 import axios from "axios";
 import { AuthConetextProvider } from "../../AuthContext/AuthContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 function Cards( {id,img,color,varient1,varient2,varient3,title,price,discount,category,page}){
 
@@ -13,7 +13,8 @@ function Cards( {id,img,color,varient1,varient2,varient3,title,price,discount,ca
 
     const parms = useParams();
 
-    console.log(parms);
+    let user = JSON.parse(localStorage.getItem('user'))
+
 
     let data = {id,img,color,varient1,varient2,varient3,title,price,discount,category}
     //console.log(data)
@@ -24,25 +25,20 @@ function Cards( {id,img,color,varient1,varient2,varient3,title,price,discount,ca
     let [axiosCartdata,setAxioscartData] = useState([])
 
     const handleAddToCart = (cartitem)=>{
-            axios(`https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`,{
-           })
-           .then((res)=>{
-                console.log(res.data.cart)
-               setAxioscartData(res.data.cart);
-           })
+
+
+           localStorage.setItem('user',JSON.stringify({...user,cart:[...user.cart,data]}))
 
            alert(`${title} added to cart`)
 
-               
-
             axios.patch(`https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`,{
-            cart:[...axiosCartdata,{...data,"quantity":1}]
+            cart:[...user.cart,{...data,"quantity":1}]
           })
           .then((res)=>{
              // console.log(res.data.cart);
-             console.log(axiosCartdata,res.data.cart)
+            // console.log(axiosCartdata,res.data.cart)
           })
-          console.log('yes')
+        
              
     }
 
