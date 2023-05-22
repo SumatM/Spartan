@@ -3,7 +3,7 @@ import {FaRegClipboard} from 'react-icons/fa'
 import {BsEnvelopeOpen} from 'react-icons/bs'
 import {GiSafetyPin} from 'react-icons/gi'
 import Footer from './../Footer'
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useRef, useState } from "react";
 import { AuthConetextProvider } from "../AuthContext/AuthContext";
 import axios from "axios";
@@ -15,13 +15,24 @@ export default function LogIn(){
   const { isOpen, onOpen, onClose } = useDisclosure()
   let navigate =useNavigate();
   let [name,setname] = useState('')
+  const location = useLocation();
+ 
+  console.log(isOpen)
 
-  let {searchdata,setSearchData} = useContext(AuthConetextProvider)
+  let {searchdata,setSearchData,handlelastPage} = useContext(AuthConetextProvider)
+
+  //console.log(searchdata);
+  if(!searchdata.lastPage){
+    handlelastPage('/')
+  }
 
   let [loginInput,setLoginInput] = useState({
     email:'',
     password:''
   })
+
+
+  
 
 
   function handlechange(e){
@@ -35,7 +46,7 @@ export default function LogIn(){
 
   function handleLoginButton(e){
     e.preventDefault();
-    onOpen()
+   // onOpen()
     axios(`https://men-clothing-mock-api-sumat.onrender.com/user/?q=${loginInput.email}`)
     .then((res)=>{
       console.log(res.data);
@@ -43,14 +54,18 @@ export default function LogIn(){
          res.data.forEach((item)=>{
            if(item.email==loginInput.email&&item.password==loginInput.password){
             setname(item)
-            console.log(item.id)
+           // console.log(item.id)
             setSearchData({...searchdata,isAuth:true,userId:item.id})
+            localStorage.setItem('auth',JSON.stringify({...searchdata}))
+            localStorage.setItem('user',JSON.stringify({...item}))
             onOpen()
             setTimeout(() => {
-              navigate('/')
+              navigate(`${searchdata.lastPage}`)
             }, 1000);
            }
+           return;
       })
+       onOpen()
     })
   
     console.log(searchdata);
@@ -66,15 +81,15 @@ useEffect(()=>{
 
 
     return (
-        <Box mt={{base:"130px",sm:"140px",md:"95px"}}> 
+        <Box mt={{base:"130px",sm:"140px",md:"20px"}}> 
         <Grid gridTemplateColumns={{base:"repeat(1,1fr)",sm:"repeat(1,1fr)",md:"repeat(2,1fr)"}} >
-        <Modal isOpen={isOpen} onClose={onClose} >
+        <Modal isOpen={isOpen} onClose={onClose} status='error'>
         <ModalOverlay />
         <ModalContent  borderRadius='0px'>
-          <ModalHeader color='green'>Login Successful</ModalHeader>
+          <ModalHeader color={searchdata.isAuth ? 'green' : 'red'} >{searchdata.isAuth ?  "Login Successful" : "Login Error"}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text>Welcome! {name.name}</Text>
+            <Text>{searchdata.isAuth ? <Heading size="md"> Welcome! {name.name}</Heading>: "Please Try Again?"}</Text>
           </ModalBody>
 
           <ModalFooter>
@@ -85,6 +100,10 @@ useEffect(()=>{
           </ModalFooter>
         </ModalContent>
       </Modal>
+
+      {/* // login error massage */}
+      
+    
         <Box >
         <Box w='70%' m='auto' textAlign='start'  >
             <Heading size='lg' p='20px' letterSpacing='1px'>My Account</Heading>

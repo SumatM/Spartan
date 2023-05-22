@@ -73,7 +73,7 @@ export default function SignUp(){
 
 
     return (
-        <Box mt={{base:"130px",sm:"140px",md:"95px"}}> 
+        <Box mt={{base:"130px",sm:"140px",md:"20px"}}> 
         <Grid gridTemplateColumns={{base:"repeat(1,1fr)",sm:"repeat(1,1fr)",md:"repeat(2,1fr)"}}>
 
         <Box >

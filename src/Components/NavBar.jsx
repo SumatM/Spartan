@@ -1,8 +1,9 @@
-import { Box, Flex, Menu, MenuButton, MenuList, MenuItem,Center,Text, HStack, Divider,Spacer,Input, IconButton, SlideFade ,Drawer,useDisclosure,DrawerContent,DrawerOverlay,DrawerCloseButton,DrawerHeader,DrawerBody} from "@chakra-ui/react";
+import { Box, Flex, Menu, MenuButton, MenuList, MenuItem,Center,Text, HStack, Divider,Spacer,Input, IconButton, SlideFade ,Drawer,useDisclosure,DrawerContent,DrawerOverlay,DrawerCloseButton,DrawerHeader,DrawerBody, Image} from "@chakra-ui/react";
 import {Link, useNavigate} from 'react-router-dom'
 import logo from './../Logo/logo-no-background.svg'
 import {HamburgerIcon, SearchIcon} from '@chakra-ui/icons'
-
+import {BiUser,BiUserPlus} from 'react-icons/bi';
+import {TfiLocationPin} from 'react-icons/tfi'
 import styles from './Styles/NavBar.module.css'
 import { useContext,useRef,useState } from "react";
 import { AuthConetextProvider } from "./AuthContext/AuthContext";
@@ -52,30 +53,28 @@ const btnRef = useRef()
 
 
   return (
-    <Box >
-   <Box display={{base:'none',sm:'none',md:'block',lg:'block'}}  bg='white'  h='90px' paddingTop='20px' marginBottom='0px' w='100%'>
+    <Box  position='sticky'top='0' zIndex='99'>
+   <Box display={{base:'none',sm:'none',md:'block',lg:'block'}}  marginBottom='0px' w='100%'>
    <HStack spacing="0" bg='white' m='0'>
     
     {/*---- box1 for location and login ----*/}
 
-    <Box  width="30%"  h="70px" marginTop="30px">
-    <HStack >
+    <Flex justify="space-around" w='30%'  h="70px" marginTop="30px">
+
     <Link to='#'>
     <Flex>
-    <Spacer/>
-    <img  className={styles.leftIcon} id={styles.location}  src="https://cdn-icons-png.flaticon.com/512/927/927667.png"/>
+    <TfiLocationPin  size='28px'/>
+    {/* <img  className={styles.leftIcon} id={styles.location}  src="https://cdn-icons-png.flaticon.com/512/927/927667.png"/> */}
     </Flex>
     </Link>
     
    <Link to='/login'>
    <Flex>
-   <img   className={styles.leftIcon} src="https://cdn-icons-png.flaticon.com/512/2354/2354573.png"/>
-   <Spacer/>
+   <BiUser color={ searchdata.isAuth ? 'green' : 'black'} size='30px'/>
+   {/* <Image _hover={{background:'red'}} className={styles.leftIcon} src="https://cdn-icons-png.flaticon.com/512/2354/2354573.png"/> */}
    </Flex>
-    
     </Link>
-    </HStack>
-    </Box>
+    </Flex>
 
         {/*---- box1 for logo ----*/}
 
@@ -142,15 +141,18 @@ const btnRef = useRef()
             <Box p='5px 0px' onClick={onClose}> <Link to='/shoe'><Text>SHOES</Text></Link></Box>
             <br/>
             <Flex mt='2px' w='100%' bg='#E4E4E4' p='10px 4px'>
-            <img   width="7%" src="https://cdn-icons-png.flaticon.com/512/927/927667.png"/>  
+            {/* <img   width="7%" src="https://cdn-icons-png.flaticon.com/512/927/927667.png"/>   */}
+            <TfiLocationPin  size='20px'/>
             <Text fontSize='13px' ml='10px'>STORE FINDER</Text>
             </Flex>
             <Flex mt='2px' w='100%' bg='#E4E4E4' p='10px 4px'>
-            <img   width="7%" src="https://cdn-icons-png.flaticon.com/512/511/511506.png"/>  
+            {/* <img   width="7%" src="https://cdn-icons-png.flaticon.com/512/511/511506.png"/>   */}
+            <BiUserPlus size='22px'/>
            <Link to='signup'> <Text onClick={onClose} fontSize='13px' ml='10px'>CREATE AN ACCOUNT</Text></Link>
             </Flex>
             <Flex mt='2px' w='100%' bg='#E4E4E4' p='10px 4px'>
-            <img  width="7%" src="https://cdn-icons-png.flaticon.com/512/2354/2354573.png"/>  
+            {/* <img  width="7%" src="https://cdn-icons-png.flaticon.com/512/2354/2354573.png"/>   */}
+            <BiUser size='20px'/>
             <Link to='/login'><Text onClick={onClose} fontSize='13px' ml='10px'>LOG IN</Text></Link>
             </Flex>
             
