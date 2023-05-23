@@ -17,7 +17,7 @@ export default function Home(){
 
 
     return(
-        <Box marginTop='5px'>
+        <Box marginTop={{base:'150px',sm:'150px',md:"20px",lg:'15px'}}>
  {/* ------------video Components------------ */}
         <Box>
         <Video/>
@@ -27,10 +27,10 @@ export default function Home(){
         <CarouselSlider width="100%" images={images}/>
         </Box>
 {/* ------------3rd part ------------ */}
-        <Box marginBottom="30px" position='relative'>
+        <Box marginBottom="30px" overflow='hidden' position='relative' fontSize='15px'>
           <img width='100%'  src='https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dw73d084aa/merchAssets/SS23/Homepage/hp/henley-hp2-desktop.jpg'/>
           
-          <Box className={styles.box3Banner}>
+          <Box className={styles.box3Banner} display={{base:'none',sm:'none',md:'block'}}>
           <Heading color=' #CEB45C' size="xl">New</Heading>
           <br/>
             <Heading  size='md'>Meet the Henley Weave,
@@ -41,7 +41,7 @@ export default function Home(){
             <Text>This non-iron hero comes in 10 designs and 3 fits.<br/>
             Pick from checks, fresh pastels and classic blues.</Text>
           </Box>
-          <Button  id={styles.box3Button}>SHOP THE COLLECTION</Button>
+          <Button display={{base:'none',sm:'none',md:'block'}}  id={styles.box3Button}>SHOP THE COLLECTION</Button>
         </Box>
   
   {/* ------------4rd part ------------ */}
@@ -130,7 +130,7 @@ export default function Home(){
         <Box mt="50px" position='relative'>
           <img width='100%'  src='https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dw5f179d60/merchAssets/AW22/Homepage/wide-banner/custom-hp2-desktop01.jpg'/>
           
-          <Box className={styles.box3Banner}>
+          <Box className={styles.box3Banner} display={{base:'none',sm:'none',md:'block'}}>
           <Heading size="xl">PERSONALISED SHIRT DESIGNS</Heading>
           <br/>
             <Heading  size='md'>WITH OUR CUSTOM SHIRT RANGE</Heading> 
@@ -139,8 +139,8 @@ export default function Home(){
             <br/>
             <Heading color=' #CEB45C' size="md">From just $119. Buy 2, Save 10%.</Heading>
           </Box>
-          <Button  id={styles.box3Button1}>START DESIGNING</Button>
-          <Button  id={styles.box3Button2}>FIND OUT MORE</Button>
+          <Button display={{base:'none',sm:'none',md:'block'}}  id={styles.box3Button1}>START DESIGNING</Button>
+          <Button display={{base:'none',sm:'none',md:'block'}}  id={styles.box3Button2}>FIND OUT MORE</Button>
         </Box>
   {/* ------------8th carbon netral ------------ */}
 

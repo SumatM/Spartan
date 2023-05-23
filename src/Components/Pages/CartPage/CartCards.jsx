@@ -14,9 +14,6 @@ function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,
 
     const {searchdata,setSearchData} = useContext(AuthConetextProvider)
      
-    console.log(searchdata)
-
-
     let [itemprice,setitemPrice] = useState(0);
     let [item,setitem] = useState(1);
 
@@ -34,18 +31,23 @@ function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,
     setTotal(mytotal)
     },[itemprice])
 
+    console.log('cartCart')
+
     function handleadditem(e){
 
         let filtered = cart.filter((item)=>{
             return item.id!==id
         })
-
+        
         let updatedData = [...filtered,{...data,quantity:e.target.value}]
+       
+
         axios.patch(`https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`,{
             cart:updatedData
         })
         .then((res)=>{
-            console.log(res);
+            console.log(res.data);
+            localStorage.setItem('user',JSON.stringify({...res.data}))
             setCart(res.data.cart);
         })
         
@@ -61,9 +63,10 @@ function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,
             cart:updatedData
         })
         .then((res)=>{
-            //console.log(res);
+            console.log(res);
             alert(`${title} deleted`)
             setCart(res.data.cart);
+            localStorage.setItem('user',JSON.stringify({...res.data}))
         })
     }
 

@@ -4,29 +4,70 @@ import {getPageData} from './../../../axios'
 import axios from "axios";
 import CartCard from "./CartCards";
 import { AuthConetextProvider } from "../../AuthContext/AuthContext";
-import { cleanup } from "@testing-library/react";
+import {useNavigate} from 'react-router-dom'
 
 
 
 function CartPage(){
-
-    const [cart,setCart] = useState([])
+    const user = JSON.parse(localStorage.getItem('user')) || [];
+    const [cart,setCart] = useState(user.cart || [])
     const [total,setTotal] = useState(0)
 
     const {searchdata,setSearchData} = useContext(AuthConetextProvider)
-    const user = JSON.parse(localStorage.getItem('user')) || [];
-   // console.log(searchdata);
+ 
+    console.log(user.cart,searchdata.isAuth);
+
+    const navigate = useNavigate();
+
+    let localUser = JSON.parse(localStorage.getItem('user')) || {
+        name: "",
+        email: "",
+        password: "",
+        cart: [],
+        address: {},
+        intrest: []
+    }
+
+    useEffect(()=>{
+        axios.patch(`https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`,{
+            cart:[...localUser.cart]
+          })
+          .then((res)=>{ 
+             // console.log(res.data.cart);
+              setCart(res.data.cart)
+              localStorage.setItem('user',JSON.stringify({...res.data}))
+            // console.log(axiosCartdata,res.data.cart)
+          })
+          .catch((err)=>{
+            console.log(err);
+          })
+    },[])
+
+
+
+
+
 
     useEffect(()=>{
         document.title = 'My Spartan Cart Store'
         axios( `https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`)
         .then((res)=>{
-            //console.log(res.data.cart)
             setCart(res.data.cart);
+        })
+        .catch((err)=>{
+            setCart(user.cart || [])
         })
     
     },[])
 
+    function handlePayment(){
+        if(searchdata.isAuth){
+            alert('Sorry for the inconvenience We are Working for Payment Page')
+        }else{
+            navigate('/login')
+        }
+       
+    }
     
 
     return(
@@ -53,19 +94,20 @@ function CartPage(){
                 </Flex> : null}
             
 
-            {cart.length==0 ? <Box h='20%' mt='80px'p='30px' letterSpacing='1.5px' >
+            {user?.cart?.length==0   ? <Box h='20%' mt='80px'p='30px' letterSpacing='1.5px' >
                 <Box>
                 <Text size='lg'>There are no items in your bag</Text>
                 </Box>
-            </Box> : <Grid  width='100%' m='auto' marginTop='20px' gridTemplateColumns={{base:"repeat(1,1fr)",sm:"repeat(1,1fr)",md:"repeat(1,1fr)",lg:'repeat(2,1fr)'}}>
+            </Box> : 
+            <Grid  width='100%' m='auto' marginTop='20px' gridTemplateColumns={{base:"repeat(1,1fr)",sm:"repeat(1,1fr)",md:"repeat(1,1fr)",lg:'repeat(2,1fr)'}}>
                 <Box  textAlign='start'>
                 <Box>
                 <Heading size='md'fontWeight='light' letterSpacing='1px'>YOUR ITEMS{}</Heading>
                 </Box>
                 <Box padding='25px'>
-                    {cart.map((item)=>{
+                {cart?.map((item)=>{
                         return <CartCard {...item} setTotal={setTotal} setCart={setCart} cart={cart}/>
-                    })}
+                    }) }
                 </Box>
                 </Box>
                 <Box padding='30px' pt='0' textAlign='start' position='sticky' top='180' right='0' h='480px'>
@@ -99,7 +141,7 @@ function CartPage(){
                         <Text fontSize='15px' fontWeight='bold'>${(total+15.95+17.95).toFixed(2)}</Text>
                         </Flex>
                         <Box>
-                            <Button w='100%' bg='#116A60' color='white' borderRadius={0}
+                            <Button onClick={handlePayment} w='100%' bg='#116A60' color='white' borderRadius={0}
                              _hover={{ bg: '#38877F' }}><Text fontWeight='light'>SECURE CHECKOUT</Text></Button>
                         </Box>
                        </Box> 

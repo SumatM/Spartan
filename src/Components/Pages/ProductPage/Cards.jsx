@@ -13,7 +13,7 @@ function Cards( {id,img,color,varient1,varient2,varient3,title,price,discount,ca
 
     const parms = useParams();
 
-    let user = JSON.parse(localStorage.getItem('user'))
+    
 
 
     let data = {id,img,color,varient1,varient2,varient3,title,price,discount,category}
@@ -26,19 +26,34 @@ function Cards( {id,img,color,varient1,varient2,varient3,title,price,discount,ca
 
     const handleAddToCart = (cartitem)=>{
 
+        let user = JSON.parse(localStorage.getItem('user')) || {
+            name: "",
+            email: "",
+            password: "",
+            cart: [],
+            address: {},
+            intrest: []
+        }
 
-           localStorage.setItem('user',JSON.stringify({...user,cart:[...user.cart,data]}))
+        if(!searchdata.isAuth){
+            localStorage.setItem('user',JSON.stringify({...user,cart:[...user.cart,data],quantity:1}))
+            alert(`${title} added to cart`)
+        }
+        console.log(user.cart.length)
 
-           alert(`${title} added to cart`)
-
-            axios.patch(`https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`,{
-            cart:[...user.cart,{...data,"quantity":1}]
+        axios.patch(`https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`,{
+            cart:[...user.cart,{...data,quantity:1}]
           })
           .then((res)=>{
-             // console.log(res.data.cart);
+            
+                alert(`${title} added to cart`)
+              console.log(res.data.cart);
+              localStorage.setItem('user',JSON.stringify({...res.data}))
             // console.log(axiosCartdata,res.data.cart)
           })
-        
+          .catch((err)=>{
+            console.log(err);
+          })
              
     }
 

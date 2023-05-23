@@ -16,8 +16,7 @@ export default function LogIn(){
   let navigate =useNavigate();
   let [name,setname] = useState('')
   const location = useLocation();
- 
-  console.log(isOpen)
+ const localUser = JSON.parse(localStorage.getItem('user'))
 
   let {searchdata,setSearchData,handlelastPage} = useContext(AuthConetextProvider)
 
@@ -46,18 +45,22 @@ export default function LogIn(){
 
   function handleLoginButton(e){
     e.preventDefault();
-   // onOpen()
     axios(`https://men-clothing-mock-api-sumat.onrender.com/user/?q=${loginInput.email}`)
     .then((res)=>{
-      console.log(res.data);
+
 
          res.data.forEach((item)=>{
            if(item.email==loginInput.email&&item.password==loginInput.password){
             setname(item)
            // console.log(item.id)
+           //console.log(localUser)
+           if(localUser){
+            localStorage.setItem('user',JSON.stringify({...item,cart:[...item.cart,...localUser.cart]}))
+
+           }
             setSearchData({...searchdata,isAuth:true,userId:item.id})
-            localStorage.setItem('auth',JSON.stringify({...searchdata}))
-            localStorage.setItem('user',JSON.stringify({...item}))
+            localStorage.setItem('auth',JSON.stringify({...searchdata,isAuth:true,userId:item.id,userId:item.id}))
+            localStorage.setItem('user',JSON.stringify({...item,cart:[...item.cart,...localUser.cart]}))
             onOpen()
             setTimeout(() => {
               navigate(`${searchdata.lastPage}`)

@@ -7,28 +7,20 @@ import {TfiLocationPin} from 'react-icons/tfi'
 import styles from './Styles/NavBar.module.css'
 import { useContext,useRef,useState } from "react";
 import { AuthConetextProvider } from "./AuthContext/AuthContext";
-
+import {RiUserReceivedLine} from 'react-icons/ri'
 
 const NavBar = () => {
 
-  const [search,setSearchData] = useState('')
+  const [search,setSearchdata] = useState('')
   let buttonRef = useRef();
-  console.log(buttonRef.current)
-
-
   let navigate = useNavigate()
   
 // drawer for small screen navbar
 const { isOpen, onOpen, onClose } = useDisclosure()
 const btnRef = useRef()
 
-
-
-  // handle Search function;
-
-
   const handleSearch = (e) =>{
-    setSearchData(e.target.value)
+    setSearchdata(e.target.value)
   }
 
   const handleSearchButton = (e)=>{
@@ -36,12 +28,11 @@ const btnRef = useRef()
     navigate('/search')
     //console.log(search)
     handlesetSearchfunction(search)
-    setSearchData('')
+    setSearchdata('')
   }
 
-  const {handlesetSearchfunction,searchdata} = useContext(AuthConetextProvider)
+  const {handlesetSearchfunction,searchdata,handlelastPage,setSearchData} = useContext(AuthConetextProvider)
 
- 
 
   function handlesmallScreenSearchIconClick(e){
    e.preventDefault()
@@ -49,6 +40,27 @@ const btnRef = useRef()
     buttonRef.current.focus();
   }
 
+  function handleLogout(){
+    let user = JSON.parse(localStorage.getItem('user'))
+
+    if(user.name===null){
+      alert('You are Logout Already')
+    }else{
+      alert(`${user.name} Thank you Visiting.`)
+    }
+
+     localStorage.setItem('auth',JSON.stringify({isAuth:false,userId:null,userId:null}))
+
+    localStorage.setItem('user',JSON.stringify({
+      name: null,
+      email: null,
+      password: null,
+      cart: [],
+      address: {},
+      intrest: []
+  }))
+  setSearchData('')
+  }
 
 
 
@@ -64,16 +76,18 @@ const btnRef = useRef()
     <Link to='#'>
     <Flex>
     <TfiLocationPin  size='28px'/>
-    {/* <img  className={styles.leftIcon} id={styles.location}  src="https://cdn-icons-png.flaticon.com/512/927/927667.png"/> */}
     </Flex>
     </Link>
     
+ 
    <Link to='/login'>
-   <Flex>
-   <BiUser color={ searchdata.isAuth ? 'green' : 'black'} size='30px'/>
-   {/* <Image _hover={{background:'red'}} className={styles.leftIcon} src="https://cdn-icons-png.flaticon.com/512/2354/2354573.png"/> */}
+   <Flex display={searchdata.isAuth ? 'none' : 'block'}>
+   <BiUser  size='30px'/>
    </Flex>
-    </Link>
+   </Link>
+   <Flex onClick={handleLogout} _hover={{cursor:'pointer'}} display={!searchdata.isAuth ? 'none' : 'block'}>
+  <RiUserReceivedLine  size='30px'/>
+   </Flex>
     </Flex>
 
         {/*---- box1 for logo ----*/}
@@ -141,20 +155,32 @@ const btnRef = useRef()
             <Box p='5px 0px' onClick={onClose}> <Link to='/shoe'><Text>SHOES</Text></Link></Box>
             <br/>
             <Flex mt='2px' w='100%' bg='#E4E4E4' p='10px 4px'>
-            {/* <img   width="7%" src="https://cdn-icons-png.flaticon.com/512/927/927667.png"/>   */}
             <TfiLocationPin  size='20px'/>
             <Text fontSize='13px' ml='10px'>STORE FINDER</Text>
             </Flex>
-            <Flex mt='2px' w='100%' bg='#E4E4E4' p='10px 4px'>
-            {/* <img   width="7%" src="https://cdn-icons-png.flaticon.com/512/511/511506.png"/>   */}
+
+            <Box display={searchdata.isAuth ? 'none' : 'block'}>
+            <Flex mt='2px' w='100%' bg='#E4E4E4' p='10px 4px' >
+   
             <BiUserPlus size='22px'/>
            <Link to='signup'> <Text onClick={onClose} fontSize='13px' ml='10px'>CREATE AN ACCOUNT</Text></Link>
             </Flex>
+            </Box>
+
+            <Box display={searchdata.isAuth ? 'none' : 'block'}>
             <Flex mt='2px' w='100%' bg='#E4E4E4' p='10px 4px'>
-            {/* <img  width="7%" src="https://cdn-icons-png.flaticon.com/512/2354/2354573.png"/>   */}
             <BiUser size='20px'/>
-            <Link to='/login'><Text onClick={onClose} fontSize='13px' ml='10px'>LOG IN</Text></Link>
+            <Link to='/login'><Text  display='inline' onClick={onClose} fontSize='13px' ml='10px'>LOG IN</Text></Link>
             </Flex>
+            </Box>
+
+            <Box display={!searchdata.isAuth ? 'none' : 'block'}>
+            <Flex  onClick={handleLogout} mt='2px' w='100%' bg='#E4E4E4' p='10px 4px'>
+            <RiUserReceivedLine size='20px'/>
+           <Text display='inline' onClick={onClose} fontSize='13px' ml='10px'>LOG OUT</Text>
+            </Flex>
+            </Box>
+
             
           </DrawerBody>
             
