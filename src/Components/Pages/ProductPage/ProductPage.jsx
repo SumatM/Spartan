@@ -134,7 +134,7 @@ const [searchParm,setSearchParam] = useSearchParams();
       colors
       })
     .then((res)=>{
-        console.log(res.data);
+        //console.log(res.data);
         let totalpagesrecieved = (res.headers.get('X-total-Count'))
         setApidata(res.data)
         globaData = res.data

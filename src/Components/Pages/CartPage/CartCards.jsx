@@ -33,10 +33,6 @@ function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,
 
     function handleadditem(e){
 
-        if ("vibrate" in navigator) {
-            console.log('vibrate is supported')
-             navigator.vibrate(200);
-           }
 
         if(!searchdata.isAuth){
             alert("Please LogIn for use this functionality");
@@ -64,7 +60,7 @@ function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,
 
         if ("vibrate" in navigator) {
             console.log('vibrate is supported')
-             navigator.vibrate(300);
+             navigator.vibrate(150);
            }
        
         if(!searchdata.isAuth){

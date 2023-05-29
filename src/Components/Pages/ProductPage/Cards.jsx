@@ -26,7 +26,7 @@ function Cards( {id,img,color,varient1,varient2,varient3,title,price,discount,ca
 
         if ("vibrate" in navigator) {
            //console.log('vibrate is supported')
-            navigator.vibrate(200);
+            navigator.vibrate(110);
           }
         
 
