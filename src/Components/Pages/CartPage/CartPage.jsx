@@ -10,12 +10,12 @@ import {useNavigate} from 'react-router-dom'
 
 function CartPage(){
     const user = JSON.parse(localStorage.getItem('user')) || [];
-    const [cart,setCart] = useState(user.cart || [])
+    console.log(user)
+    const [cart,setCart] = useState( user.cart || [])
     const [total,setTotal] = useState(0)
 
     const {searchdata,setSearchData} = useContext(AuthConetextProvider)
  
-    console.log(user.cart,searchdata.isAuth);
 
     const navigate = useNavigate();
 
@@ -55,6 +55,7 @@ function CartPage(){
             setCart(res.data.cart);
         })
         .catch((err)=>{
+            console.log('set cart',user.cart)
             setCart(user.cart || [])
         })
     
@@ -74,10 +75,11 @@ function CartPage(){
         <Box width='97%' m='auto' marginTop={{base:"130px",sm:"140px",md:"20px"}}>
           {user?.cart?.length==0 ? 
             <Box >
-                {searchdata.isAuth ? <Heading size='md'>Welcome {user?.name} your Cart is empty!</Heading> : null}
+                {searchdata.isAuth ? <Heading size='md' mt='20px'>Welcome {user?.name} your Cart is empty!</Heading> : null}
             </Box>  : null}
 
-            {user?.cart?.length==0 ? <Flex mt='15px' justify='space-between' p='10px' >
+            {user?.cart?.length ? 
+            <Flex mt='15px' justify='space-between' p='10px' >
 
                 <Heading size='xl' fontWeight='light' letterSpacing='2px' fontFamily='sans-serif' mt='20px'>BAG</Heading>
 
@@ -94,7 +96,7 @@ function CartPage(){
                 </Flex> : null}
             
 
-            {user?.cart?.length==0   ? <Box h='20%' mt='80px'p='30px' letterSpacing='1.5px' >
+            {!user?.cart?.length   ? <Box h='20%' mt='80px'p='30px' letterSpacing='1.5px' >
                 <Box>
                 <Text size='lg'>There are no items in your bag</Text>
                 </Box>
@@ -147,7 +149,7 @@ function CartPage(){
                        </Box> 
                     </Flex>
 
-                </Box>
+                </Box> 
             </Grid>
             }
         </Box>

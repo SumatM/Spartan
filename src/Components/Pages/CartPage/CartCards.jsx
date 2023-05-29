@@ -27,13 +27,21 @@ function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,
         let mytotal = cart.reduce((acc,item)=>{
             return acc+item.price*item.quantity
         },0)
-        //console.log(mytotal)
     setTotal(mytotal)
     },[itemprice])
 
-    console.log('cartCart')
 
     function handleadditem(e){
+
+        if ("vibrate" in navigator) {
+            console.log('vibrate is supported')
+             navigator.vibrate(200);
+           }
+
+        if(!searchdata.isAuth){
+            alert("Please LogIn for use this functionality");
+            return; 
+        }
 
         let filtered = cart.filter((item)=>{
             return item.id!==id
@@ -46,7 +54,6 @@ function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,
             cart:updatedData
         })
         .then((res)=>{
-            console.log(res.data);
             localStorage.setItem('user',JSON.stringify({...res.data}))
             setCart(res.data.cart);
         })
@@ -54,16 +61,36 @@ function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,
     }
 
     function handleDelete(){
+
+        if ("vibrate" in navigator) {
+            console.log('vibrate is supported')
+             navigator.vibrate(300);
+           }
+       
+        if(!searchdata.isAuth){
+        let local = JSON.parse(localStorage.getItem('user'))
+
+        let filter = local.cart.filter((item)=> item.id!==id)
+        
+            alert(`${title} deleted`)
+            setCart(filter);
+        local.cart = filter;
+            localStorage.setItem('user',JSON.stringify(local))
+            return;
+        }
+
         let filtered = cart.filter((item)=>{
             return item.id!==id
         })
 
+
         let updatedData = [...filtered]
+
         axios.patch(`https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`,{
             cart:updatedData
         })
         .then((res)=>{
-            console.log(res);
+           // console.log(res);
             alert(`${title} deleted`)
             setCart(res.data.cart);
             localStorage.setItem('user',JSON.stringify({...res.data}))
@@ -79,8 +106,8 @@ function CartCard({id,img,color,varient1,varient2,varient3,title,price,discount,
             <Heading textAlign='start' size='sm' letterSpacing='1px' fontWeight='normal'>{title}</Heading>
             </Box>
             <Spacer/>
-            <Box onClick={handleDelete}>
-                <CloseIcon/>
+            <Box >
+                <CloseIcon onClick={handleDelete} />
             </Box>
         </Flex>
         {/* 1st box */}

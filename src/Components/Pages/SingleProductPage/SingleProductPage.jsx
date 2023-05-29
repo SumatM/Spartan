@@ -2,9 +2,9 @@ import {Text} from '@chakra-ui/react'
 
 function SingleProductPage(){
 
-    console.log('single product page')
+    
 
-    return(<Text mt='100px'>SingleProduct Page</Text>)
+    return(<Text fontSize='25px' fontWeight='bold' mt='100px'>We are building this page. Thank for Visiting.</Text>)
 }
 
 

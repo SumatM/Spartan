@@ -22,9 +22,13 @@ function Cards( {id,img,color,varient1,varient2,varient3,title,price,discount,ca
 
     //console.log(searchdata)
 
-    let [axiosCartdata,setAxioscartData] = useState([])
-
     const handleAddToCart = (cartitem)=>{
+
+        if ("vibrate" in navigator) {
+           //console.log('vibrate is supported')
+            navigator.vibrate(200);
+          }
+        
 
         let user = JSON.parse(localStorage.getItem('user')) || {
             name: "",
@@ -36,10 +40,13 @@ function Cards( {id,img,color,varient1,varient2,varient3,title,price,discount,ca
         }
 
         if(!searchdata.isAuth){
-            localStorage.setItem('user',JSON.stringify({...user,cart:[...user.cart,data],quantity:1}))
+            
+            let userdata = ({...user,cart:[...user.cart,{...data,quantity:1}]})
+            console.log(userdata)
+            localStorage.setItem('user',JSON.stringify(userdata))
             alert(`${title} added to cart`)
+            return;
         }
-        console.log(user.cart.length)
 
         axios.patch(`https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`,{
             cart:[...user.cart,{...data,quantity:1}]
@@ -57,10 +64,9 @@ function Cards( {id,img,color,varient1,varient2,varient3,title,price,discount,ca
              
     }
 
-    useEffect(()=>{
-        
-          //alert("Item added in Cart!")
-    },[axiosCartdata])
+
+
+
 
     function handleProductClick(){
         navigate(`/${page}/${id}`)
