@@ -29,7 +29,8 @@ function CartPage(){
     }
 
     useEffect(()=>{
-        axios.patch(`https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`,{
+        if(searchdata?.userId){
+            axios.patch(`https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`,{
             cart:[...localUser.cart]
           })
           .then((res)=>{ 
@@ -41,6 +42,8 @@ function CartPage(){
           .catch((err)=>{
             console.log(err);
           })
+        }
+        
     },[])
 
 
@@ -50,14 +53,17 @@ function CartPage(){
 
     useEffect(()=>{
         document.title = 'My Spartan Cart Store'
-        axios( `https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`)
-        .then((res)=>{
-            setCart(res.data.cart);
-        })
-        .catch((err)=>{
-            console.log('set cart',user.cart)
-            setCart(user.cart || [])
-        })
+        if(searchdata.userId){
+            axios( `https://men-clothing-mock-api-sumat.onrender.com/user/${searchdata.userId}`)
+            .then((res)=>{
+                setCart(res.data.cart);
+            })
+            .catch((err)=>{
+                console.log('set cart',user.cart)
+                setCart(user.cart || [])
+            })
+        }
+        
     
     },[])
 
@@ -74,7 +80,7 @@ function CartPage(){
     return(
         <Box width='97%' m='auto' marginTop={{base:"130px",sm:"140px",md:"20px"}}>
           {user?.cart?.length==0 ? 
-            <Box >
+            <Box pt='10px'>
                 {searchdata.isAuth ? <Heading size='md' mt='20px'>Welcome {user?.name} your Cart is empty!</Heading> : null}
             </Box>  : null}
 

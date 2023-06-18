@@ -115,7 +115,7 @@ const [searchParm,setSearchParam] = useSearchParams();
 
 
     useEffect(()=>{
-    dispatch({type:'loading',payload:true})
+    
     if(flag!==page){
         //console.log(flag,page);
        // dispatch({type:"currPage",payload:1})
@@ -123,7 +123,7 @@ const [searchParm,setSearchParam] = useSearchParams();
         dispatch({type:'reset'})
     }
 
-
+    dispatch({type:'loading',payload:true})
       getPageData({
       page:currPage,
       limit:perpageitem,

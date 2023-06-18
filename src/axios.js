@@ -7,8 +7,6 @@ let OfflineUrl = 'http://localhost:8080/'
 
 // let baseUrl = OfflineUrl
 
-    console.log(baseUrl);
-
 function getPageData(params){
 
     console.log(params.pageType,params.colors,params);

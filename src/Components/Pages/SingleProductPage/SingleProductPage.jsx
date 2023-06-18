@@ -1,10 +1,12 @@
-import {Text} from '@chakra-ui/react'
+import {Box, Text} from '@chakra-ui/react'
 
 function SingleProductPage(){
 
     
 
-    return(<Text fontSize='25px' fontWeight='bold' mt='100px'>We are building this page. Thank for Visiting.</Text>)
+    return(<Box>
+        <Text fontSize='25px' fontWeight='bold' mt={{base:"150px",sm:"160px",md:"30px"}}>We are building this page. Thank for Visiting.</Text>
+    </Box>)
 }
 
 

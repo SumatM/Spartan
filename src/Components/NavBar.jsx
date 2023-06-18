@@ -42,19 +42,18 @@ const btnRef = useRef()
 
   function handleLogout(){
     let user = JSON.parse(localStorage.getItem('user'))
-
     if(user.name===null){
       alert('You are Logout Already')
     }else{
       alert(`${user.name} Thank you Visiting.`)
     }
 
-     localStorage.setItem('auth',JSON.stringify({isAuth:false,userId:null,userId:null}))
+     localStorage.setItem('auth',JSON.stringify({isAuth:false,userId:"",userId:""}))
 
     localStorage.setItem('user',JSON.stringify({
-      name: null,
-      email: null,
-      password: null,
+      name: "",
+      email: "",
+      password: "",
       cart: [],
       address: {},
       intrest: []
@@ -204,7 +203,7 @@ const btnRef = useRef()
 
       </Flex>
     <Box  m="auto" pt='5px' pb='8px' bg="#EBEDF3" mt='15px'>
-    <Input onChange={handleSearch} ref={buttonRef} bg='white' border='0.5px solid gray'  variant='outline' value={search} placeholder='Search' size="md" w={{base:'90%'}} m="0" marginTop="5px" borderLeft='0px solid white' borderRadius="5px 0 0 5px"/>
+    <Input onChange={handleSearch} ref={buttonRef} bg='white' border='0.5px solid gray'  variant='outline' value={search} placeholder='Search' size="md" w={{base:'85%'}} m="0" marginTop="5px" borderLeft='0px solid white' borderRadius="5px 0 0 5px"/>
     <IconButton onClick={handleSearchButton} m="0" bg='white' border='0.5px solid gray' br='none' aria-label='Search database' marginTop="-5px" borderRadius="0 5px 5px 0" icon={<SearchIcon />} />
     </Box>
     </Box>
