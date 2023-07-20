@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './../../Styles/CarouselSlider.module.css'
 import { BsFillArrowLeftCircleFill,BsFillArrowRightCircleFill } from "react-icons/bs";
+import { Box } from '@chakra-ui/react';
 
 function  CarouselSlider({images}){
 
@@ -17,15 +18,13 @@ function  CarouselSlider({images}){
       currentImageIndex === 0 ? images.length - 3 : currentImageIndex - 1;
     setCurrentImageIndex(previousIndex);
   };
-  console.log(currentImageIndex)
-
 
   return (
-    <div className={styles.carouselbox}>
+    <Box className={styles.carouselbox} >
       <button className={styles.carouselbutton} onClick={previousImage}>
         {<BsFillArrowLeftCircleFill size="30px"/>}
       </button>
-      <div className={styles.carousel}>
+      <Box className={styles.carousel} >
       <img
         className={styles.carouselimage}
         src={images[currentImageIndex]}
@@ -41,11 +40,11 @@ function  CarouselSlider({images}){
         src={images[currentImageIndex+2]}
         alt=""
       />
-      </div>
+      </Box>
       <button className={styles.carouselbutton} onClick={nextImage}>
         {<BsFillArrowRightCircleFill size="30px"/>}
       </button>
-    </div>
+    </Box>
   );
 
     

@@ -12,7 +12,6 @@ import {intialstate} from './reducer.js'
 import {AuthConetextProvider} from './../../AuthContext/AuthContext'
 import { useNavigate,useSearchParams} from 'react-router-dom';
 
-
 let globaData = [];
 
 export default function ProductPage({page}){
@@ -147,7 +146,7 @@ const [searchParm,setSearchParam] = useSearchParams();
         dispatch({type:'error',payload:true})
         console.log(error)
      })
-     
+     document.documentElement.scrollTop = 0;
      
     },[page,perpageitem,currPage,order,searchInput,colors])
 

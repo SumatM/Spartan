@@ -10,7 +10,7 @@ import {useNavigate} from 'react-router-dom'
 
 function CartPage(){
     const user = JSON.parse(localStorage.getItem('user')) || [];
-    console.log(user)
+    //console.log(user)
     const [cart,setCart] = useState( user.cart || [])
     const [total,setTotal] = useState(0)
 

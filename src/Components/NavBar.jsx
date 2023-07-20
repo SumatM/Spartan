@@ -1,14 +1,13 @@
-import { Box, Flex, Menu, MenuButton, MenuList, MenuItem,Center,Text, HStack, Divider,Spacer,Input, IconButton, SlideFade ,Drawer,useDisclosure,DrawerContent,DrawerOverlay,DrawerCloseButton,DrawerHeader,DrawerBody, Image} from "@chakra-ui/react";
+import { Box, Flex, Menu, MenuButton, MenuList, MenuItem,Center,Text, HStack, Divider,Spacer,Input, IconButton ,Drawer,useDisclosure,DrawerContent,DrawerOverlay,DrawerCloseButton,DrawerHeader,DrawerBody, Image} from "@chakra-ui/react";
 import {Link, useNavigate} from 'react-router-dom'
 import logo from './../Logo/logo-no-background.svg'
 import {HamburgerIcon, SearchIcon} from '@chakra-ui/icons'
 import {BiUser,BiUserPlus} from 'react-icons/bi';
 import {TfiLocationPin} from 'react-icons/tfi'
 import styles from './Styles/NavBar.module.css'
-import { useContext,useRef,useState } from "react";
+import { useContext,useRef,useState,useEffect } from "react";
 import { AuthConetextProvider } from "./AuthContext/AuthContext";
 import {RiUserReceivedLine} from 'react-icons/ri'
-
 const NavBar = () => {
 
   const [search,setSearchdata] = useState('')
@@ -24,19 +23,16 @@ const btnRef = useRef()
   }
 
   const handleSearchButton = (e)=>{
-    
     navigate('/search')
     //console.log(search)
     handlesetSearchfunction(search)
     setSearchdata('')
   }
-
   const {handlesetSearchfunction,searchdata,handlelastPage,setSearchData} = useContext(AuthConetextProvider)
-
 
   function handlesmallScreenSearchIconClick(e){
    e.preventDefault()
-    console.log(buttonRef.current)
+    //console.log(buttonRef.current)
     buttonRef.current.focus();
   }
 
@@ -48,7 +44,7 @@ const btnRef = useRef()
       alert(`${user.name} Thank you Visiting.`)
     }
 
-     localStorage.setItem('auth',JSON.stringify({isAuth:false,userId:"",userId:""}))
+    localStorage.setItem('auth',JSON.stringify({isAuth:false,userId:"",userId:""}))
 
     localStorage.setItem('user',JSON.stringify({
       name: "",
@@ -60,6 +56,10 @@ const btnRef = useRef()
   }))
   setSearchData('')
   }
+
+  useEffect(()=>{
+    checkLoginTimeDiff()
+  },[])
 
 
 
@@ -213,3 +213,29 @@ const btnRef = useRef()
 
 export default NavBar;
 
+export function checkLoginTimeDiff() {
+  const timediff =
+    Date.now() - (localStorage.getItem("loginTime") || Date.now());
+  let loginTime = timediff / 1000 / 60;
+  if (loginTime > 30) {
+    alert(
+      "You are Logged out due to mock server API. Apologies for the inconvenience."
+    );
+    localStorage.setItem(
+      "auth",
+      JSON.stringify({ isAuth: false, userId: "", userId: "" })
+    );
+    localStorage.setItem("loginTime", null);
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        name: "",
+        email: "",
+        password: "",
+        cart: [],
+        address: {},
+        intrest: [],
+      })
+    );
+  }
+}
