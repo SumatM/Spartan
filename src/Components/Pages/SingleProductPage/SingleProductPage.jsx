@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Footer from "../../Footer";
 import { IoMdArrowDropright } from "react-icons/io";
 import { AiFillStar } from "react-icons/ai";
@@ -125,11 +125,11 @@ function SingleProductPage() {
       >
         {/* breadCrum  */}
         <Flex align="center" p="10px">
-          <Text>Home</Text>
+        <Link to='/'>  <Text>Home</Text></Link>
           <Box p="0 10px">
             <IoMdArrowDropright size="20px" />
           </Box>
-          <Text>{capitalizeFirstLetter(product)}</Text>
+          <Link to={product}><Text>{capitalizeFirstLetter(product)}</Text></Link>
           <Box p="0 10px">
             <IoMdArrowDropright size="20px" />
           </Box>
