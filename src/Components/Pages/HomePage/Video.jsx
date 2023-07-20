@@ -2,11 +2,12 @@ import React, { useRef, useState } from 'react';
 import { Box, Heading, Button, Center } from '@chakra-ui/react';
 import video from './../../../Banner/homepagevideo.mp4';
 import styles from './../../Styles/Video.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function Video() {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-
+const navigate = useNavigate()
   const handlePause = () => {
     videoRef.current.pause();
     setIsPlaying(false);
@@ -37,12 +38,12 @@ function Video() {
           </Box>
         </Box>
         <Box id={styles.textOverButtons} display={{ base: 'block', md: 'block', lg: 'block' }} >
-          <Button>SHOP NEW SEASON</Button>
-          <Button>SHOP SHIRTS</Button>
+          <Button onClick={()=>{navigate('/pant')}}>SHOP NEW SEASON</Button>
+          <Button onClick={()=>{navigate('/shirt')}}>SHOP SHIRTS</Button>
         </Box>
       </Center>
       <Box>
-          <Button display={{base:'none',sm:'none',md:'block',lg:'block'}} id={styles.textOverButton}> New Season</Button>
+          <Button display={{base:'none',sm:'none',md:'block',lg:'block'}} id={styles.textOverButton} onClick={()=>{navigate('/suit')}}> New Season</Button>
         </Box>
     </Box>
   );

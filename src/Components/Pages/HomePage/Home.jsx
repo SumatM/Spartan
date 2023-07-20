@@ -14,9 +14,10 @@ import styles from "./../../Styles/Home.module.css";
 import CarouselSlider from "./CarouselSlider";
 import Footer from "../../Footer";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   let images = [
     "https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dw3afa10eb/merchAssets/SS23/Homepage/hero-carousel/hc-025.jpg",
     "https://www.charlestyrwhitt.com/on/demandware.static/-/Library-Sites-CTShirtsSharedLibrary/default/dw1c66575d/merchAssets/SS23/Homepage/hero-carousel/hc-039.jpg",
@@ -122,9 +123,15 @@ export default function Home() {
               The Collection that every man should own. <br /> Timeless,
               versatile pieces designed to slot into your wardrobe with ease.
             </Text>
-            <Link to="/suit">
-              <Button id={styles.box3part2Vstack_Button}>SHOP NOW</Button>
-            </Link>
+
+            <Button
+              id={styles.box3part2Vstack_Button}
+              onClick={() => {
+                navigate("/suit");
+              }}
+            >
+              SHOP NOW
+            </Button>
           </VStack>
         </Box>
       </Grid>
@@ -153,9 +160,14 @@ export default function Home() {
               Discover the latest seasonal looks, wheter you're dressing for the
               commute, <br />a work trip or weekend away. Stay comfy in style.
             </Text>
-            <Link to="/shirts">
-              <Button id={styles.box3part2Vstack_Button}>SHOP NOW</Button>
-            </Link>
+            <Button
+              id={styles.box3part2Vstack_Button}
+              onClick={() => {
+                navigate("/shirt");
+              }}
+            >
+              SHOP NOW
+            </Button>
           </VStack>
         </Box>
         <Box>
@@ -397,5 +409,3 @@ export default function Home() {
     </Box>
   );
 }
-
-
